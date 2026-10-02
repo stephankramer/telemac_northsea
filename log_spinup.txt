@@ -1,0 +1,643 @@
+
+
+Loading configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   ___      __              _              
+  / _ \    /_ |            | |             
+ | (_) |    | | ______   __| |  ___ __   __
+  \__, |    | ||______| / _` | / _ \\ \ / /
+    / /  _  | |        | (_| ||  __/ \ V / 
+   /_/  (_) |_|         \__,_| \___|  \_/  
+                                           
+                                           
+
+
+Running your CAS file(s) for:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    +> root:    /home/skramer/prj/telemac
+    +> build:   /home/skramer/prj/telemac/builds/my_custom_build
+    +> modules: api / artemis / bief / damocles
+                gaia  / gretel  / hermes  / khione
+                mascaret  / nestor  / parallel  / partel
+                postel3d  / special  / stbtel  / telemac2d
+                telemac3d / tomawac / waqtel
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+... processing the steering file
+  ~> Checking keyword/rubrique coherence
+
+... checking parallelisation
+
+... handling temporary directories
+         copying: t2d_spinup.cas -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DCAS
+         copying: telemac2d.dico -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DDICO
+         copying: geo_north_sea.slf -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DGEO
+         copying: geo_north_sea.cli -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DCLI
+         copying: liq_spinup.txt -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DIMP
+         copying: stations_spinup.txt -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DCO1
+
+... checking the executable
+  ~> Compiling Fortran files
+         compiling: prosou.f ... completed
+         created: libuser_fortran.so
+
+
+Running your simulation(s) :
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+In /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s:
+mpiexec -n 1 /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/telemac2d
+
+
+ MASTER PROCESSOR NUMBER            0  OF THE GROUP OF            1
+ EXECUTABLE FILE: /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/A.EXE
+ LISTING OF TELEMAC2D------------------------------------------------------------------------------
+
+                TTTTT  EEEEE  L      EEEEE  M   M  AAAAA  CCCCC
+                  T    E      L      E      MM MM  A   A  C
+                  T    EEE    L      EEE    M M M  AAAAA  C
+                  T    E      L      E      M   M  A   A  C
+                  T    EEEEE  LLLLL  EEEEE  M   M  A   A  CCCCC
+
+                        2D    VERSION 9.1    FORTRAN 2003
+
+                        ~^~^~^~^~^~^~^~^~^~^~^^~^~^~^~^~^~
+                          ~                            ~
+                               \   '    o      '
+                               /\ o       \  o
+                             >=)'>    '   /\ '
+                               \/   \   >=)'>        ~
+                               /    /\    \/
+                        ~         >=)'>   /     .
+                                    \/                   )
+                                    /                   (
+                                          ~          )   )
+                          }     ~              (    (   (
+                         {                      )    )   )
+                          }  }         .       (    (   (
+                         {  {               /^^^^^^^^^^^^
+                        ^^^^^^^^^\         /
+                                  ^^^^^^^^^
+
+ DIFFERENT NUMBER OF PARALLEL PROCESSORS:
+ DECLARED BEFORE (CASE OF COUPLING ?):           1
+ TELEMAC-2D :           0
+ VALUE            1  IS KEPT
+
+                   ********************************************
+                   *               LECDON:                    *
+                   *        AFTER CALLING DAMOCLES            *
+                   *        CHECKING OF DATA  READ            *
+                   *         IN THE STEERING FILE             *
+                   ********************************************
+
+ TREATMENT OF NEGATIVE DEPTHS =           2
+ MASS-LUMPING ON H AUTOMATICALLY SET TO 1.D0
+ CONTINUITY CORRECTION AUTOMATICALLY SET TO YES
+ SUPG OPTION AUTOMATICALLY SET TO 0 FOR H
+
+ EXITING LECDON. NAME OF THE STUDY:
+ NORTH SEA SPINUP (THETIS REPLICA)
+
+ OPENING FILES FOR TELEMAC2D
+ OPENING: T2DGEO-geo_north_sea.slf
+ OPENING: T2DCLI-geo_north_sea.cli
+ OPENING: T2DCO1-stations_spinup.txt
+ OPENING: T2DRES-r2d_spinup.slf
+ OPENING: T2DHI1-ts_spinup.slf
+ OPENING: T2DIMP-liq_spinup.txt
+
+                          *****************************
+                          *    MEMORY ORGANIZATION    *
+                          *****************************
+
+ READ_MESH_INFO: TITLE= NORTH SEA (THETIS MESH)
+            NUMBER OF ELEMENTS:    10583
+            NUMBER OF POINTS:     6396
+
+            TYPE OF ELEMENT: TRIANGLE
+            TYPE OF BND ELEMENT: POINT
+
+            DOUBLE PRECISION FORMAT (R8)
+
+ MXPTEL (BIEF) : MAXIMUM NUMBER OF ELEMENTS AROUND A POINT:   9
+                 MAXIMUM NUMBER OF POINTS AROUND A POINT:   9
+ USER_CORRXY (BIEF):NO MODIFICATION OF COORDINATES
+
+ MESH: MESH   ALLOCATED
+
+                     *************************************
+                     *    END OF MEMORY ORGANIZATION:    *
+                     *************************************
+
+ INITIALIZING TELEMAC2D FOR
+ INBIEF (BIEF): NOT A VECTOR MACHINE (ACCORDING TO YOUR DATA)
+ STRCHE (BIEF): NO MODIFICATION OF FRICTION
+
+ THERE IS    36 ISLAND(S) IN THE DOMAIN
+
+ THERE IS     1 LIQUID BOUNDARIES:
+
+ BOUNDARY    1 :
+  BEGINS AT BOUNDARY POINT:      869 , WITH GLOBAL NUMBER:      5186
+  AND COORDINATES:     1093522.           7100862.
+  ENDS AT BOUNDARY POINT:       20 , WITH GLOBAL NUMBER:       318
+  AND COORDINATES:     357033.6           5355242.
+
+ THERE IS    37 SOLID BOUNDARIES:
+
+ BOUNDARY    1 :
+  BEGINS AT BOUNDARY POINT:       20 , WITH GLOBAL NUMBER:       318
+  AND COORDINATES:     357033.6           5355242.
+  ENDS AT BOUNDARY POINT:      869 , WITH GLOBAL NUMBER:      5186
+  AND COORDINATES:     1093522.           7100862.
+
+ BOUNDARY    2 :
+  BEGINS AT BOUNDARY POINT:     1397 , WITH GLOBAL NUMBER:      1210
+  AND COORDINATES:     4632.359           5739915.
+  ENDS AT BOUNDARY POINT:     1397 , WITH GLOBAL NUMBER:      1210
+  AND COORDINATES:     4632.359           5739915.
+
+ BOUNDARY    3 :
+  BEGINS AT BOUNDARY POINT:     2242 , WITH GLOBAL NUMBER:       254
+  AND COORDINATES:     306790.4           5551082.
+  ENDS AT BOUNDARY POINT:     2242 , WITH GLOBAL NUMBER:       254
+  AND COORDINATES:     306790.4           5551082.
+
+ BOUNDARY    4 :
+  BEGINS AT BOUNDARY POINT:     1131 , WITH GLOBAL NUMBER:      1376
+  AND COORDINATES:     601015.4           5613245.
+  ENDS AT BOUNDARY POINT:     1131 , WITH GLOBAL NUMBER:      1376
+  AND COORDINATES:     601015.4           5613245.
+
+ BOUNDARY    5 :
+  BEGINS AT BOUNDARY POINT:     1201 , WITH GLOBAL NUMBER:       633
+  AND COORDINATES:     399485.5           5894602.
+  ENDS AT BOUNDARY POINT:     1201 , WITH GLOBAL NUMBER:       633
+  AND COORDINATES:     399485.5           5894602.
+
+ BOUNDARY    6 :
+  BEGINS AT BOUNDARY POINT:      970 , WITH GLOBAL NUMBER:       714
+  AND COORDINATES:     392632.9           5901679.
+  ENDS AT BOUNDARY POINT:      970 , WITH GLOBAL NUMBER:       714
+  AND COORDINATES:     392632.9           5901679.
+
+ BOUNDARY    7 :
+  BEGINS AT BOUNDARY POINT:     1160 , WITH GLOBAL NUMBER:      1234
+  AND COORDINATES:     382644.3           5991608.
+  ENDS AT BOUNDARY POINT:     1160 , WITH GLOBAL NUMBER:      1234
+  AND COORDINATES:     382644.3           5991608.
+
+ BOUNDARY    8 :
+  BEGINS AT BOUNDARY POINT:     1192 , WITH GLOBAL NUMBER:      2341
+  AND COORDINATES:     278800.9           6177090.
+  ENDS AT BOUNDARY POINT:     1192 , WITH GLOBAL NUMBER:      2341
+  AND COORDINATES:     278800.9           6177090.
+
+ BOUNDARY    9 :
+  BEGINS AT BOUNDARY POINT:     1094 , WITH GLOBAL NUMBER:      2020
+  AND COORDINATES:     309842.9           6188999.
+  ENDS AT BOUNDARY POINT:     1094 , WITH GLOBAL NUMBER:      2020
+  AND COORDINATES:     309842.9           6188999.
+
+ BOUNDARY   10 :
+  BEGINS AT BOUNDARY POINT:     1136 , WITH GLOBAL NUMBER:      1796
+  AND COORDINATES:     356956.4           6147232.
+  ENDS AT BOUNDARY POINT:     1136 , WITH GLOBAL NUMBER:      1796
+  AND COORDINATES:     356956.4           6147232.
+
+ BOUNDARY   11 :
+  BEGINS AT BOUNDARY POINT:      996 , WITH GLOBAL NUMBER:      2531
+  AND COORDINATES:     258645.9           6263014.
+  ENDS AT BOUNDARY POINT:      996 , WITH GLOBAL NUMBER:      2531
+  AND COORDINATES:     258645.9           6263014.
+
+ BOUNDARY   12 :
+  BEGINS AT BOUNDARY POINT:     1217 , WITH GLOBAL NUMBER:      2332
+  AND COORDINATES:     292736.8           6244460.
+  ENDS AT BOUNDARY POINT:     1217 , WITH GLOBAL NUMBER:      2332
+  AND COORDINATES:     292736.8           6244460.
+
+ BOUNDARY   13 :
+  BEGINS AT BOUNDARY POINT:      992 , WITH GLOBAL NUMBER:      2506
+  AND COORDINATES:     272197.5           6276148.
+  ENDS AT BOUNDARY POINT:      992 , WITH GLOBAL NUMBER:      2506
+  AND COORDINATES:     272197.5           6276148.
+
+ BOUNDARY   14 :
+  BEGINS AT BOUNDARY POINT:      978 , WITH GLOBAL NUMBER:      2776
+  AND COORDINATES:     227336.0           6320980.
+  ENDS AT BOUNDARY POINT:      978 , WITH GLOBAL NUMBER:      2776
+  AND COORDINATES:     227336.0           6320980.
+
+ BOUNDARY   15 :
+  BEGINS AT BOUNDARY POINT:     1020 , WITH GLOBAL NUMBER:      1455
+  AND COORDINATES:     369262.2           6181350.
+  ENDS AT BOUNDARY POINT:     1020 , WITH GLOBAL NUMBER:      1455
+  AND COORDINATES:     369262.2           6181350.
+
+ BOUNDARY   16 :
+  BEGINS AT BOUNDARY POINT:     1074 , WITH GLOBAL NUMBER:      2802
+  AND COORDINATES:     239852.5           6337250.
+  ENDS AT BOUNDARY POINT:     1074 , WITH GLOBAL NUMBER:      2802
+  AND COORDINATES:     239852.5           6337250.
+
+ BOUNDARY   17 :
+  BEGINS AT BOUNDARY POINT:      986 , WITH GLOBAL NUMBER:      2961
+  AND COORDINATES:     240728.7           6370734.
+  ENDS AT BOUNDARY POINT:      986 , WITH GLOBAL NUMBER:      2961
+  AND COORDINATES:     240728.7           6370734.
+
+ BOUNDARY   18 :
+  BEGINS AT BOUNDARY POINT:      982 , WITH GLOBAL NUMBER:      2485
+  AND COORDINATES:     298048.3           6316491.
+  ENDS AT BOUNDARY POINT:      982 , WITH GLOBAL NUMBER:      2485
+  AND COORDINATES:     298048.3           6316491.
+
+ BOUNDARY   19 :
+  BEGINS AT BOUNDARY POINT:     1105 , WITH GLOBAL NUMBER:      3187
+  AND COORDINATES:     228595.4           6393121.
+  ENDS AT BOUNDARY POINT:     1105 , WITH GLOBAL NUMBER:      3187
+  AND COORDINATES:     228595.4           6393121.
+
+ BOUNDARY   20 :
+  BEGINS AT BOUNDARY POINT:     1302 , WITH GLOBAL NUMBER:      2397
+  AND COORDINATES:     316369.0           6326195.
+  ENDS AT BOUNDARY POINT:     1302 , WITH GLOBAL NUMBER:      2397
+  AND COORDINATES:     316369.0           6326195.
+
+ BOUNDARY   21 :
+  BEGINS AT BOUNDARY POINT:     1304 , WITH GLOBAL NUMBER:      3078
+  AND COORDINATES:     261969.8           6407907.
+  ENDS AT BOUNDARY POINT:     1304 , WITH GLOBAL NUMBER:      3078
+  AND COORDINATES:     261969.8           6407907.
+
+ BOUNDARY   22 :
+  BEGINS AT BOUNDARY POINT:     1145 , WITH GLOBAL NUMBER:      2810
+  AND COORDINATES:     962520.1           5750749.
+  ENDS AT BOUNDARY POINT:     1145 , WITH GLOBAL NUMBER:      2810
+  AND COORDINATES:     962520.1           5750749.
+
+ BOUNDARY   23 :
+  BEGINS AT BOUNDARY POINT:     1011 , WITH GLOBAL NUMBER:      3162
+  AND COORDINATES:     1020843.           5900635.
+  ENDS AT BOUNDARY POINT:     1011 , WITH GLOBAL NUMBER:      3162
+  AND COORDINATES:     1020843.           5900635.
+
+ BOUNDARY   24 :
+  BEGINS AT BOUNDARY POINT:      967 , WITH GLOBAL NUMBER:      3398
+  AND COORDINATES:     1025954.           5926511.
+  ENDS AT BOUNDARY POINT:      967 , WITH GLOBAL NUMBER:      3398
+  AND COORDINATES:     1025954.           5926511.
+
+ BOUNDARY   25 :
+  BEGINS AT BOUNDARY POINT:     1002 , WITH GLOBAL NUMBER:      3400
+  AND COORDINATES:     1042380.           5943410.
+  ENDS AT BOUNDARY POINT:     1002 , WITH GLOBAL NUMBER:      3400
+  AND COORDINATES:     1042380.           5943410.
+
+ BOUNDARY   26 :
+  BEGINS AT BOUNDARY POINT:     1182 , WITH GLOBAL NUMBER:      4885
+  AND COORDINATES:     503991.2           6511545.
+  ENDS AT BOUNDARY POINT:     1182 , WITH GLOBAL NUMBER:      4885
+  AND COORDINATES:     503991.2           6511545.
+
+ BOUNDARY   27 :
+  BEGINS AT BOUNDARY POINT:      974 , WITH GLOBAL NUMBER:      3335
+  AND COORDINATES:     1071547.           5956141.
+  ENDS AT BOUNDARY POINT:      974 , WITH GLOBAL NUMBER:      3335
+  AND COORDINATES:     1071547.           5956141.
+
+ BOUNDARY   28 :
+  BEGINS AT BOUNDARY POINT:     1042 , WITH GLOBAL NUMBER:      4554
+  AND COORDINATES:     300815.6           6813920.
+  ENDS AT BOUNDARY POINT:     1042 , WITH GLOBAL NUMBER:      4554
+  AND COORDINATES:     300815.6           6813920.
+
+ BOUNDARY   29 :
+  BEGINS AT BOUNDARY POINT:     1009 , WITH GLOBAL NUMBER:      4439
+  AND COORDINATES:     304161.5           6853924.
+  ENDS AT BOUNDARY POINT:     1009 , WITH GLOBAL NUMBER:      4439
+  AND COORDINATES:     304161.5           6853924.
+
+ BOUNDARY   30 :
+  BEGINS AT BOUNDARY POINT:     1035 , WITH GLOBAL NUMBER:      4046
+  AND COORDINATES:     277004.2           6885211.
+  ENDS AT BOUNDARY POINT:     1035 , WITH GLOBAL NUMBER:      4046
+  AND COORDINATES:     277004.2           6885211.
+
+ BOUNDARY   31 :
+  BEGINS AT BOUNDARY POINT:     1120 , WITH GLOBAL NUMBER:      4375
+  AND COORDINATES:     299791.1           6876521.
+  ENDS AT BOUNDARY POINT:     1120 , WITH GLOBAL NUMBER:      4375
+  AND COORDINATES:     299791.1           6876521.
+
+ BOUNDARY   32 :
+  BEGINS AT BOUNDARY POINT:     1060 , WITH GLOBAL NUMBER:      4217
+  AND COORDINATES:     292884.2           6901812.
+  ENDS AT BOUNDARY POINT:     1060 , WITH GLOBAL NUMBER:      4217
+  AND COORDINATES:     292884.2           6901812.
+
+ BOUNDARY   33 :
+  BEGINS AT BOUNDARY POINT:     1256 , WITH GLOBAL NUMBER:      5564
+  AND COORDINATES:     594448.9           6637718.
+  ENDS AT BOUNDARY POINT:     1256 , WITH GLOBAL NUMBER:      5564
+  AND COORDINATES:     594448.9           6637718.
+
+ BOUNDARY   34 :
+  BEGINS AT BOUNDARY POINT:     1052 , WITH GLOBAL NUMBER:      5607
+  AND COORDINATES:     603564.0           6707158.
+  ENDS AT BOUNDARY POINT:     1052 , WITH GLOBAL NUMBER:      5607
+  AND COORDINATES:     603564.0           6707158.
+
+ BOUNDARY   35 :
+  BEGINS AT BOUNDARY POINT:     1029 , WITH GLOBAL NUMBER:      5661
+  AND COORDINATES:     610203.2           6732453.
+  ENDS AT BOUNDARY POINT:     1029 , WITH GLOBAL NUMBER:      5661
+  AND COORDINATES:     610203.2           6732453.
+
+ BOUNDARY   36 :
+  BEGINS AT BOUNDARY POINT:     1054 , WITH GLOBAL NUMBER:      6038
+  AND COORDINATES:     970626.1           6654986.
+  ENDS AT BOUNDARY POINT:     1054 , WITH GLOBAL NUMBER:      6038
+  AND COORDINATES:     970626.1           6654986.
+
+ BOUNDARY   37 :
+  BEGINS AT BOUNDARY POINT:     1087 , WITH GLOBAL NUMBER:      6189
+  AND COORDINATES:     957520.3           6739922.
+  ENDS AT BOUNDARY POINT:     1087 , WITH GLOBAL NUMBER:      6189
+  AND COORDINATES:     957520.3           6739922.
+
+ USER_CORFON (TELEMAC2D): NO MODIFICATION OF BOTTOM
+
+ CORFON (TELEMAC2D): NO BOTTOM SMOOTHINGS
+
+================================================================================
+ ITERATION        0    TIME:   0.0000 S
+ TELEMAC2D INITIALIZED
+ THE LIQUID BOUNDARIES FILE CONTAINS
+        4033  LINES WITH:
+ SL(745)       SL(705)       SL(615)       SL(527)       SL(525)       SL(476)       SL(445)       SL(375)       SL(299)       SL(266)       SL(242)       SL(206)       SL(186)       SL(194)       SL(252)       SL(285)       SL(363)       SL(397)       SL(362)       SL(318)       SL(5186)      SL(5355)      SL(5454)      SL(5554)      SL(5649)      SL(5755)      SL(5756)      SL(5760)      SL(5758)      SL(5703)      SL(5701)      SL(5700)      SL(5651)      SL(5598)      SL(5596)      SL(5585)      SL(5550)      SL(5498)      SL(5448)      SL(5439)      SL(5440)      SL(5442)      SL(5388)      SL(5350)      SL(5290)      SL(5236)      SL(5115)      SL(5061)      SL(5007)      SL(5008)      SL(5006)      SL(4911)      SL(4816)      SL(4720)      SL(4616)      SL(4511)      SL(4443)      SL(4322)      SL(4262)      SL(4220)      SL(4105)      SL(4001)      SL(3887)      SL(3773)      SL(3611)      SL(3482)      SL(3421)      SL(3420)      SL(3351)      SL(3309)      SL(3238)      SL(3137)      SL(3050)      SL(3048)      SL(3047)      SL(2970)      SL(2931)      SL(2900)      SL(2865)      SL(2804)      SL(2778)      SL(2708)      SL(2630)      SL(2573)      SL(2539)      SL(2510)      SL(2431)      SL(2348)      SL(2270)      SL(2218)      SL(2190)      SL(2138)      SL(2071)      SL(2016)      SL(1969)      SL(1913)      SL(1848)      SL(1823)      SL(1792)      SL(1726)      SL(1670)      SL(1628)      SL(1560)      SL(1482)      SL(1473)      SL(1440)      SL(1381)      SL(1348)      SL(1269)      SL(1205)      SL(1136)      SL(1072)      SL(1073)      SL(1029)      SL(947)       SL(895)       SL(804)
+ USING STREAMLINE VERSION 9.1 FOR CHARACTERISTICS
+ PROSOU: SPATIALLY VARYING CORIOLIS PARAMETER READ FROM THE GEOMETRY FILE
+ PROSOU : IN CARTESIAN COORDINATES, THE CORIOLIS
+          PARAMETER IS READ IN THE STEERING FILE
+          IT IS THE KEY WORD 'CORIOLIS
+          COEFFICIENT', IT IS UNIFORM IN SPACE
+
+================================================================================
+ ITERATION      288    TIME:    1 D  0 H  0 MN   0.0000 S   (    86400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          911
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       69 ITERATIONS, RELATIVE PRECISION:   0.8318914E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9535077E+15 M3
+     FLUX BOUNDARY    1:     2706689.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.8640E+05 S :    0.3122064E-15
+
+================================================================================
+ ITERATION      576    TIME:    2 D  0 H  0 MN   0.0000 S   (   172800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          915
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       85 ITERATIONS, RELATIVE PRECISION:   0.7431216E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534285E+15 M3
+     FLUX BOUNDARY    1:     2108888.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1728E+06 S :   -0.1011019E-13
+
+================================================================================
+ ITERATION      864    TIME:    3 D  0 H  0 MN   0.0000 S   (   259200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          937
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8796021E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9533662E+15 M3
+     FLUX BOUNDARY    1:    -6613353.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2592E+06 S :    0.3273456E-13
+
+================================================================================
+ ITERATION     1152    TIME:    4 D  0 H  0 MN   0.0000 S   (   345600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          938
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8247174E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9533393E+15 M3
+     FLUX BOUNDARY    1:   -0.2072997E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.3456E+06 S :    0.1601040E-13
+
+================================================================================
+ ITERATION     1440    TIME:    5 D  0 H  0 MN   0.0000 S   (   432000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.7585448E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9533695E+15 M3
+     FLUX BOUNDARY    1:   -0.3420971E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.4320E+06 S :   -0.1229993E-14
+
+================================================================================
+ ITERATION     1728    TIME:    6 D  0 H  0 MN   0.0000 S   (   518400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       76 ITERATIONS, RELATIVE PRECISION:   0.9457230E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534545E+15 M3
+     FLUX BOUNDARY    1:   -0.4321448E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.5184E+06 S :   -0.3260932E-13
+
+================================================================================
+ ITERATION     2016    TIME:    7 D  0 H  0 MN   0.0000 S   (   604800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       76 ITERATIONS, RELATIVE PRECISION:   0.8602156E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9535721E+15 M3
+     FLUX BOUNDARY    1:   -0.4358740E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.6048E+06 S :   -0.3404097E-13
+
+================================================================================
+ ITERATION     2304    TIME:    8 D  0 H  0 MN   0.0000 S   (   691200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8770297E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9536905E+15 M3
+     FLUX BOUNDARY    1:   -0.3451750E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.6912E+06 S :   -0.9671897E-13
+
+================================================================================
+ ITERATION     2592    TIME:    9 D  0 H  0 MN   0.0000 S   (   777600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       78 ITERATIONS, RELATIVE PRECISION:   0.9084303E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537748E+15 M3
+     FLUX BOUNDARY    1:   -0.1554852E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.7776E+06 S :   -0.4017734E-13
+
+================================================================================
+ ITERATION     2880    TIME:   10 D  0 H  0 MN   0.0000 S   (   864000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          963
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       82 ITERATIONS, RELATIVE PRECISION:   0.9161841E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537953E+15 M3
+     FLUX BOUNDARY    1:     8883233.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.8640E+06 S :   -0.5464264E-13
+
+================================================================================
+ ITERATION     3168    TIME:   11 D  0 H  0 MN   0.0000 S   (   950400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8423260E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537415E+15 M3
+     FLUX BOUNDARY    1:    0.3220243E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.9504E+06 S :   -0.8330020E-13
+
+================================================================================
+ ITERATION     3456    TIME:   12 D  0 H  0 MN   0.0000 S   (  1036800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8403593E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9536190E+15 M3
+     FLUX BOUNDARY    1:    0.4960656E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1037E+07 S :    0.1892917E-13
+
+================================================================================
+ ITERATION     3744    TIME:   13 D  0 H  0 MN   0.0000 S   (  1123200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       78 ITERATIONS, RELATIVE PRECISION:   0.8369469E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534468E+15 M3
+     FLUX BOUNDARY    1:    0.5952777E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1123E+07 S :   -0.2910548E-13
+
+================================================================================
+ ITERATION     4032    TIME:   14 D  0 H  0 MN   0.0000 S   (  1209600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       75 ITERATIONS, RELATIVE PRECISION:   0.9745360E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9532460E+15 M3
+     FLUX BOUNDARY    1:    0.6037049E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1210E+07 S :    0.3968058E-13
+--------------------------------------------------------------------------------
+                   FINAL BALANCE OF WATER VOLUME
+
+     RELATIVE ERROR CUMULATED ON VOLUME:    0.1209481E-10
+
+     INITIAL VOLUME              :    0.9535598E+15 M3
+     FINAL VOLUME                :    0.9532460E+15 M3
+     VOLUME THAT ENTERED THE DOMAIN:   -0.3138068E+12 M3  ( IF <0 EXIT )
+     TOTAL VOLUME LOST             :     11533.12     M3
+
+ END OF TIME LOOP
+
+ EXITING MPI
+
+                     *************************************
+                     *    END OF MEMORY ORGANIZATION:    *
+                     *************************************
+
+ CORRECT END OF RUN
+
+ ELAPSE TIME :
+                             42  SECONDS
+STOP 0
+... merging separated result files
+
+... handling result files
+
+        moving: r2d_spinup.slf
+        moving: ts_spinup.slf
+... deleting working dir
+
+
+
+My work is done
+
+

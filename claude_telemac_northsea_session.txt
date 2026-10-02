@@ -1,0 +1,839 @@
+ ▐▛███▛█   Claude Code v2.1.285
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   ~/fdm/src/thetis/telemac_northsea
+
+  Opus 5.5 is now your default model and it draws down usage faster than Sonnet 5. Switch anytime with /model.
+
+❯ mkdir telemac_northsea                                                        
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● I created the telemac_northsea/ directory at the root of the thetis repo.
+
+✻ Crunched for 7s · done 14:13
+
+❯ so I want you to look at the north sea example examples/north_sea/ and set up 
+  the same problem in telemac. I have the source and build of telemac in        
+  /home/skramer/prj/telemac (need to source setenv_telemac.sh before running).  
+  I would like the telemac setup to be as close as possible as the one in       
+  thetis, same mesh, same timesteps, same forcing - and also produce the output 
+  at the same gauge locations. Let me know if there's anything unclear, or      
+  choices you have to make                                                      
+
+  Ran 8 shell commands (ctrl+o to expand)
+
+● The Thetis setup actually loads its mesh from north_sea_bathymetry.h5 (6396
+  vertices), not north_sea.msh (6565 nodes), so I'll export the mesh from the h5
+  file; also noting only the TPXO elevation file is present, no u file.
+
+  Ran 5 shell commands (ctrl+o to expand)
+
+● Confirmed TELEMAC-2D's finite-element Coriolis is uniform and handled
+  explicitly in Cartesian coordinates. Now checking the user hooks to add
+  latitude-dependent Coriolis and per-node tidal boundary values.
+
+  Ran 5 shell commands (ctrl+o to expand)
+
+● I'll compute boundary elevations using thetis's TPXO/uptide code and feed them
+  to TELEMAC as a node-by-node liquid-boundaries file to keep forcing
+  identical. Next, I'll check when thetis evaluates its forcing within a
+  timestep.
+
+  Ran 8 shell commands (ctrl+o to expand)
+
+● Next I'm working out how to get a latitude-dependent Coriolis parameter into
+  TELEMAC.
+
+  Ran 5 shell commands (ctrl+o to expand)
+
+● I have enough to start writing the setup. Next I'll export the mesh and
+  bathymetry from thetis's checkpoint and check the boundary loops and the
+  bathymetry range.
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● The fdm venv has a broken firedrake import: firedrake is a newer dev checkout
+  than the installed fenics-ufl. I'll check whether another venv works rather
+  than modifying yours.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The fdr venv works. I'll use it for preprocessing and check which thetis and
+  uptide it picks up.
+
+  Ran 6 shell commands (ctrl+o to expand)
+
+● I'm writing the preprocessing script covering mesh, bathymetry/Coriolis to
+  Selafin, boundary file, tidal forcing, and gauge coordinates. Next I'll check
+  the size of prosou.f for overriding variable Coriolis.
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Write(prepare_telemac.py)
+  ⎿  Wrote 232 lines to prepare_telemac.py
+       1 """
+       2 Generate TELEMAC-2D input files that replicate the Thetis North 
+       3 (examples/north_sea).
+       4 
+       5 Run with a working Firedrake/Thetis environment from this direct
+       6 
+       7     python prepare_telemac.py
+       8 
+      10   geo_north_sea.slf    geometry (SERAFIND): mesh, BOTTOM and COR
+         IOLIS fields
+     … +267 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Still on the preprocessing script: fixing a firedrake API difference in how
+  boundary markers are read.
+
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; python3 - <<'EOF'
+      p='prepare_telemac.py'; s=open(p).read()…)
+  ⎿  6396 nodes, 10583 elements (5227 reoriented)
+     2279 boundary nodes in 37 loops
+     117 liquid boundary nodes
+     … +8 lines (ctrl+o to expand)
+  ⎿  Updated prepare_telemac.py (+4 -1)
+      75  ef = mesh2d.exterior_facets
+      76  cell_nodes = P1.exterior_facet_node_map().values
+      77  local_facet = ef.local_facet_dat.data_ro.ravel()
+      78 -markers = ef.markers                                           
+      78 +markers = np.zeros(len(local_facet), dtype=int)                
+      79 +for mark in ef.unique_markers:                                 
+      80 +    markers[ef.subset(int(mark)).indices] = mark               
+      81 +assert np.all(markers > 0)                                     
+      82  edges = []
+      83  for nodes, lf, mark in zip(cell_nodes, local_facet, markers):
+      84      # facet i of a triangle is opposite vertex i
+  ⎿  Created stations_spinup.txt (+10 -0)
+       1 +1 8                                                            
+       2 +0. 1209600.0 86400.0                                           
+       3 +558178.8972 6331910.6435 1 Aberdeen                            
+       4 +802099.1320 5671702.6663 2 Dover                               
+       5 +98002.0440 5915363.6533 3 GalwayPort                           
+       6 +392347.1892 5908641.4672 4 Holyhead                            
+       7 +925089.6499 6893338.2435 5 Maloy                               
+       8 +415725.6410 5580219.1550 6 Plymouth                            
+       9 +564420.4101 5448175.4622 7 StHelier                            
+      10 +658294.2240 6042828.4008 8 Whitby                              
+  ⎿  Created stations_run.txt (+10 -0)
+       1 +1 8                                                            
+       2 +0. 259200.0 3600.0                                             
+       3 +558178.8972 6331910.6435 1 Aberdeen                            
+       4 +802099.1320 5671702.6663 2 Dover                               
+       5 +98002.0440 5915363.6533 3 GalwayPort                           
+       6 +392347.1892 5908641.4672 4 Holyhead                            
+       7 +925089.6499 6893338.2435 5 Maloy                               
+       8 +415725.6410 5580219.1550 6 Plymouth                            
+       9 +564420.4101 5448175.4622 7 StHelier                            
+      10 +658294.2240 6042828.4008 8 Whitby                              
+  ⎿  … 4 more files changed (part of the diff is unavailable)
+  ⎿  (timeout 10m)
+
+● Only 117 liquid nodes came out, which is less than I'd expect from 237
+  open-boundary facets. I'm checking why.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● No bug found: the 237 "Face Sets" entries count both edges and vertices, and
+  the 118-edge open boundary works out to 117 liquid nodes after excluding the 2
+  junction nodes. Now I'll verify TELEMAC's own reader accepts the generated
+  geometry.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● The geometry file looks right: 6396 nodes, bathymetry from 10 to 3472 m, and f
+  between 1.09e-4 and 1.32e-4. Next I'll write the user-Fortran Coriolis
+  override.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Bash(mkdir -p /home/skramer/fdm/src/thetis/telemac_northsea/user_fortran; cd
+      /home/skramer/fdm/src/thetis/telemac_northsea; python3 - <<'EOF'
+      src = open('/home/skram…)
+  ⎿  131c131
+     <      &  ACCINF,T8,T9,T10,T11,MSKOBS,ENTET,FAIROPT
+     ---
+     … +47 lines (ctrl+o to expand)
+  ⎿  1 file changed (binary, mode only or too large to show)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Next I'm writing the steering files, one for the spinup and one for the run.
+  Each is 3600 s steps; the spinup prints daily, the run hourly.
+● Write(t2d_spinup.cas)
+  ⎿  Wrote 44 lines to t2d_spinup.cas
+       1 /---------------------------------------------------------------
+       2 / TELEMAC-2D replica of the Thetis North Sea example: spin-up ru
+         n
+       3 / 2022-01-01 -> 2022-01-15, tidal forcing ramped up linearly ove
+       4 / full 14 days (ramp included in liq_spinup.txt)
+       5 / cf. examples/north_sea/spinup.py and model_config.py
+         ------
+       7 TITLE = 'NORTH SEA SPINUP (THETIS REPLICA)'
+       8 /
+      10 /
+     … +38 lines (ctrl+o to expand)
+
+● I'm not sure TELEMAC's steering-file parser supports includes, so I'll write
+  each file out in full.
+
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; python3 - <<'EOF'
+      common = """/…)
+  ⎿  854:keyword \telkey{COMPUTATION CONTINUED} since release 9.0.
+     4553:NOM1 = 'TREATMENT OF THE LINEAR SYSTEM'
+     6232:NOM1 = 'SCHEME FOR ADVECTION OF VELOCITIES'
+     … +3 lines (ctrl+o to expand)
+  ⎿  Updated t2d_spinup.cas (+26 -1)
+      41  /
+      42  OPTION FOR LIQUID BOUNDARIES FILE = 2
+      43  /
+      44 -&FIC= t2d_common.cas                                           
+      44 +/                                                              
+      45 +/ PHYSICS (as in model_config.py)                              
+      46 +/                                                              
+      47 +/ Manning n = 0.03                                             
+      48 +LAW OF BOTTOM FRICTION           = 4                           
+      49 +FRICTION COEFFICIENT             = 0.03                        
+      50 +/ Coriolis f = 2*7.292e-5*sin(lat), read node-wise from variabl
+         +e CORIOLIS                                                     
+      51 +/ in the geometry file by user_fortran/prosou.f (coefficient be
+         +low unused)                                                    
+      52 +CORIOLIS                         = YES                         
+      53 +CORIOLIS COEFFICIENT             = 1.2E-4                      
+      54 +/ thetis setup has no viscosity                                
+      55 +DIFFUSION OF VELOCITY            = NO                          
+      56 +/ no wetting and drying in thetis (bathymetry capped at 10 m)  
+      57 +TIDAL FLATS                      = NO                          
+      58 +/                                                              
+      59 +/ NUMERICS                                                     
+      60 +/                                                              
+      61 +DISCRETIZATIONS IN SPACE         = 11 ; 11                     
+      62 +TREATMENT OF THE LINEAR SYSTEM   = 2                           
+      63 +FREE SURFACE GRADIENT COMPATIBILITY = 0.9                      
+      64 +IMPLICITATION FOR DEPTH          = 0.55                        
+      65 +IMPLICITATION FOR VELOCITY       = 0.55                        
+      66 +SCHEME FOR ADVECTION OF VELOCITIES = 1                         
+      67 +SOLVER                           = 1                           
+      68 +SOLVER ACCURACY                  = 1.E-8                       
+      69 +MAXIMUM NUMBER OF ITERATIONS FOR SOLVER = 1000                 
+  ⎿  Created t2d_run.cas (+70 -0)
+       1 +/--------------------------------------------------------------
+         +-------                                                        
+       2 +/ TELEMAC-2D replica of the Thetis North Sea example: main run 
+       3 +/ 2022-01-15 -> 2022-01-18, restarted from the end of the spin-
+         +up run                                                         
+       4 +/ cf. examples/north_sea/run.py and model_config.py            
+       5 +/--------------------------------------------------------------
+         +-------                                                        
+       6 +TITLE = 'NORTH SEA RUN (THETIS REPLICA)'                       
+       7 +/                                                              
+       8 +/ FILES                                                        
+       9 +/                                                              
+      10 +GEOMETRY FILE                    = geo_north_sea.slf           
+      11 +GEOMETRY FILE FORMAT             = 'SERAFIND'                  
+      12 +BOUNDARY CONDITIONS FILE         = geo_north_sea.cli           
+      13 +LIQUID BOUNDARIES FILE           = liq_run.txt                 
+      14 +FORTRAN FILE                     = 'user_fortran'              
+      15 +RESULTS FILE                     = r2d_run.slf                 
+      16 +RESULTS FILE FORMAT              = 'SERAFIND'                  
+      17 +TIME SERIES COORDINATES FILE 1   = stations_run.txt            
+      18 +TIME SERIES FILE 1               = ts_run.slf                  
+      19 +TIME SERIES FILE 1 FORMAT        = 'SERAFIND'                  
+      20 +INTERPOLATION METHOD FOR TIME SERIES = 1                       
+      21 +/                                                              
+      22 +/ TIME                                                         
+      23 +/                                                              
+      24 +ORIGINAL DATE OF TIME            = 2022;01;15                  
+      25 +ORIGINAL HOUR OF TIME            = 0;0;0                       
+      26 +TIME STEP                        = 3600.                       
+      27 +NUMBER OF TIME STEPS             = 72                          
+      28 +/ hourly exports, as in thetis                                 
+      29 +GRAPHIC PRINTOUT PERIOD          = 1                           
+      30 +LISTING PRINTOUT PERIOD          = 1                           
+      31 +VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,S,H,B'                 
+      32 +MASS-BALANCE                     = YES                         
+      33 +/                                                              
+      34 +/ INITIAL CONDITIONS: last record of the spin-up, time reset to
+         + zero                                                          
+      35 +/                                                              
+      36 +COMPUTATION CONTINUED            = YES                         
+      37 +PREVIOUS COMPUTATION FILE        = r2d_spinup.slf              
+      38 +PREVIOUS COMPUTATION FILE FORMAT = 'SERAFIND'                  
+      39 +INITIAL TIME SET TO ZERO         = YES                         
+      40 +/                                                              
+     … 30 more lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● COMPUTATION CONTINUED was removed in v9, so I'm deleting it from the run file.
+  Then I'll start the spinup.
+
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; sed -i '/^COMPUTATION
+      CONTINUED/d' t2d_run.cas; source
+      /home/skramer/prj/telemac/setenv_telemac.sh; (time tele…)
+  ⎿  real       0m7.778s
+     user       0m4.766s
+     sys        0m0.438s
+     … +39 lines (ctrl+o to expand)
+  ⎿  Updated t2d_run.cas (+0 -1)
+      33  /
+      34  / INITIAL CONDITIONS: last record of the spin-up, time reset to
+           zero
+      35  /
+      36 -COMPUTATION CONTINUED            = YES                         
+      36  PREVIOUS COMPUTATION FILE        = r2d_spinup.slf
+      37  PREVIOUS COMPUTATION FILE FORMAT = 'SERAFIND'
+      38  INITIAL TIME SET TO ZERO         = YES
+  ⎿  Created t2d_spinup.cas_2026-10-01-17h03min05s/T2DCAS (+69 -0)
+       1 +/--------------------------------------------------------------
+         +-------                                                        
+       2 +/ TELEMAC-2D replica of the Thetis North Sea example: spin-up r
+         +un                                                             
+       3 +/ 2022-01-01 -> 2022-01-15, tidal forcing ramped up linearly ov
+         +er the                                                         
+       4 +/ full 14 days (ramp included in liq_spinup.txt)               
+       5 +/ cf. examples/north_sea/spinup.py and model_config.py         
+       6 +/--------------------------------------------------------------
+         +-------                                                        
+       7 +TITLE = 'NORTH SEA SPINUP (THETIS REPLICA)'                    
+       8 +/                                                              
+       9 +/ FILES                                                        
+      10 +/                                                              
+      11 +GEOMETRY FILE                    = geo_north_sea.slf           
+      12 +GEOMETRY FILE FORMAT             = 'SERAFIND'                  
+      13 +BOUNDARY CONDITIONS FILE         = geo_north_sea.cli           
+      14 +LIQUID BOUNDARIES FILE           = liq_spinup.txt              
+      15 +FORTRAN FILE                     = 'user_fortran'              
+      16 +RESULTS FILE                     = r2d_spinup.slf              
+      17 +RESULTS FILE FORMAT              = 'SERAFIND'                  
+      18 +TIME SERIES COORDINATES FILE 1   = stations_spinup.txt         
+      19 +TIME SERIES FILE 1               = ts_spinup.slf               
+      20 +TIME SERIES FILE 1 FORMAT        = 'SERAFIND'                  
+      21 +INTERPOLATION METHOD FOR TIME SERIES = 1                       
+      22 +/                                                              
+      23 +/ TIME                                                         
+      24 +/                                                              
+      25 +ORIGINAL DATE OF TIME            = 2022;01;01                  
+      26 +ORIGINAL HOUR OF TIME            = 0;0;0                       
+      27 +TIME STEP                        = 3600.                       
+      28 +NUMBER OF TIME STEPS             = 336                         
+      29 +/ thetis spinup exports (incl. gauge time series) every 24 hour
+         +s                                                              
+      30 +GRAPHIC PRINTOUT PERIOD          = 24                          
+      31 +LISTING PRINTOUT PERIOD          = 24                          
+      32 +VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,S,H,B'                 
+      33 +MASS-BALANCE                     = YES                         
+      34 +/                                                              
+      35 +/ INITIAL CONDITIONS: at rest, zero elevation                  
+      36 +/                                                              
+      37 +INITIAL CONDITIONS               = 'CONSTANT ELEVATION'        
+      38 +INITIAL ELEVATION                = 0.                          
+      39 +/                                                              
+      40 +/ BOUNDARY CONDITIONS: node-by-node prescribed elevation on ope
+         +n boundary                                                     
+     … 29 more lines (ctrl+o to expand)
+  ⎿  Created t2d_spinup.cas_2026-10-01-17h03min05s/T2DCO1 (+10 -0)
+       1 +1 8                                                            
+       2 +0. 1209600.0 86400.0                                           
+       3 +558178.8972 6331910.6435 1 Aberdeen                            
+       4 +802099.1320 5671702.6663 2 Dover                               
+       5 +98002.0440 5915363.6533 3 GalwayPort                           
+       6 +392347.1892 5908641.4672 4 Holyhead                            
+       7 +925089.6499 6893338.2435 5 Maloy                               
+       8 +415725.6410 5580219.1550 6 Plymouth                            
+       9 +564420.4101 5448175.4622 7 StHelier                            
+      10 +658294.2240 6042828.4008 8 Whitby                              
+  ⎿  Created t2d_spinup.cas_2026-10-01-17h03min05s/CONFIG (+2 -0)
+      1 +2                                                               
+      2 +6                                                               
+  ⎿  Created t2d_spinup.cas_2026-10-01-17h03min05s/MPI_HOSTFILE (+1 -0)
+      1 +skramer-laptop                                                  
+      2   No newline at end of file
+  ⎿  … 11 more files changed (part of the diff is unavailable)
+  ⎿  (timeout 10m)
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+● The node-by-node boundary file is rejected because TELEMAC sizes the per-node
+  flag array by MAXIMUM NUMBER OF BOUNDARIES, and we have 2279 boundary nodes.
+  I'm raising that limit.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● The spinup is running and stable with dt=3600 s, but slow: about a minute per
+  simulated day for only 6400 nodes. Next I'm finding out what costs the time.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● The run is CPU-bound and has used 10 minutes so far. I'll sample the call
+  stack to see where the time goes.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● That attached to the parent process instead of the solver. Retrying on the
+  actual telemac2d process:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Nearly all the time is in characteristics tracing (charac/schar11). That
+  suggests velocities are growing and the trajectories are very long. I'll check
+  the results written so far.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The run becomes unstable, with speeds spiking to 13 m/s by day 4 and 458 m/s
+  by day 12, so I'm stopping it. I'll run short diagnostic tests next,
+  suspecting TELEMAC's explicit Coriolis treatment (f·dt ≈ 0.44) is the cause.
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Background command "Increase max boundaries and rerun spinup" completed (exit
+code 0)
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● I'm testing why dt=3600 s blows up in TELEMAC. Only one core is available, so
+  I'll run the experiments sequentially in the background.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● While those run, I'm writing the post-processing script. It converts TELEMAC
+  gauge output into thetis-format HDF5 and plots the comparison.
+
+● Write(postprocess.py)
+  ⎿  Wrote 150 lines to postprocess.py
+       1 """
+         nto the
+       3 HDF5 format written by Thetis' TimeSeriesCallback2D, i.e.
+       4     <outdir>/diagnostic_timeseries_<station>_elev.hdf5
+         rvations.
+       6 
+       8     python postprocess.py                    # ts_run.slf -> out
+         puts/
+       9     python postprocess.py ts_spinup.slf outputs_spinup
+          thetis
+     … +162 lines (ctrl+o to expand)
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● My earlier parallel launch did run after all. Experiment A (no Coriolis,
+  dt=3600 s) and C (dt=600 s) have finished; B (θ=1) and D (dt=300 s) are still
+  going. Checking peak speeds:
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● So far dt=3600s without Coriolis is stable, and dt=600s with Coriolis is
+  stable — pointing to the explicit Coriolis term at dt=3600s as the culprit.
+  I'll now check how feasible a semi-implicit Coriolis treatment would be in the
+  wave-equation velocity update.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Background command "Run stability experiments sequentially" completed (exit
+code 0)
+
+● Making Coriolis implicit in TELEMAC's wave-equation formulation would require
+  altering core numerics, so I'll hold off on that without confirmation. Now
+  checking the remaining experiments.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● dt=3600 s is unstable due to explicit Coriolis, while dt=600 s is stable, fast
+  (12 s for 6 days), and matches dt=300 s within 5.5 cm at the gauges. I'm now
+  testing dt=1200 s and 1800 s to find the largest stable timestep.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Since dt=1200s and 1800s also become unstable during spinup, TELEMAC needs
+  dt=600s with this explicit Coriolis setup. I'll set that in the steering
+  files, note it clearly, match Thetis's output intervals, and run the full
+  pipeline.
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; python3 - <<'EOF'
+      for name, nsteps, period, old_steps, old_period in (("t2d_spinup.cas",
+      2016, 144, 336, 24),…)
+  ⎿  t2d_spinup.cas:30:TIME STEP                        = 600.
+     t2d_spinup.cas:31:NUMBER OF TIME STEPS             = 2016
+     t2d_spinup.cas:32:/ thetis spinup exports (incl. gauge time series) ev
+     … +8 lines (ctrl+o to expand)
+  ⎿  Updated t2d_spinup.cas (+9 -4)
+      24  /
+      25  ORIGINAL DATE OF TIME            = 2022;01;01
+      26  ORIGINAL HOUR OF TIME            = 0;0;0
+      27 -TIME STEP                        = 3600.                       
+      28 -NUMBER OF TIME STEPS             = 336                         
+      27 +/ NOTE: thetis uses dt=3600 s (DIRK22, implicit Coriolis). TELE
+         +MAC-2D FE                                                      
+      28 +/ treats Coriolis explicitly, which is unstable for f*dt > ~0.1
+         + here                                                          
+      29 +/ (dt=1200 s and above blow up), so a smaller time step is used
+         +.                                                              
+      30 +TIME STEP                        = 600.                        
+      31 +NUMBER OF TIME STEPS             = 2016                        
+      32  / thetis spinup exports (incl. gauge time series) every 24 hour
+          s
+      30 -GRAPHIC PRINTOUT PERIOD          = 24                          
+      31 -LISTING PRINTOUT PERIOD          = 24                          
+      33 +GRAPHIC PRINTOUT PERIOD          = 144                         
+      34 +LISTING PRINTOUT PERIOD          = 144                         
+      35  VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,S,H,B'
+      36  MASS-BALANCE                     = YES
+      37  /
+     ...
+      43  / BOUNDARY CONDITIONS: node-by-node prescribed elevation on ope
+          n boundary
+      44  /
+      45  OPTION FOR LIQUID BOUNDARIES FILE = 2
+      46 +/ arrays for node-by-node liquid boundary data are sized with t
+         +his                                                            
+      47 +MAXIMUM NUMBER OF BOUNDARIES     = 3000                        
+      48  /
+      49  /
+      50  / PHYSICS (as in model_config.py)
+  ⎿  Updated t2d_run.cas (+7 -4)
+      23  /
+      24  ORIGINAL DATE OF TIME            = 2022;01;15
+      25  ORIGINAL HOUR OF TIME            = 0;0;0
+      26 -TIME STEP                        = 3600.                       
+      27 -NUMBER OF TIME STEPS             = 72                          
+      26 +/ NOTE: thetis uses dt=3600 s (DIRK22, implicit Coriolis). TELE
+         +MAC-2D FE                                                      
+      27 +/ treats Coriolis explicitly, which is unstable for f*dt > ~0.1
+         + here                                                          
+      28 +/ (dt=1200 s and above blow up), so a smaller time step is used
+         +.                                                              
+      29 +TIME STEP                        = 600.                        
+      30 +NUMBER OF TIME STEPS             = 432                         
+      31  / hourly exports, as in thetis
+      29 -GRAPHIC PRINTOUT PERIOD          = 1                           
+      30 -LISTING PRINTOUT PERIOD          = 1                           
+      32 +GRAPHIC PRINTOUT PERIOD          = 6                           
+      33 +LISTING PRINTOUT PERIOD          = 6                           
+      34  VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,S,H,B'
+      35  MASS-BALANCE                     = YES
+      36  /
+  ⎿  … 1 more file changed
+
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; source
+      /home/skramer/prj/telemac/setenv_telemac.sh; telemac2d.py t2d_spinup.cas >
+      log_spinup.txt 2>&1; echo sp…)
+  ⎿  spinup 0
+     run 0
+     log_spinup.txt: ELAPSE TIME :
+     … +27 lines (ctrl+o to expand)
+  ⎿  (file diff unavailable for this command; 6 files changed)
+  ⎿  (timeout 10m)
+
+● Both runs completed: the spinup in 27 s and the 3-day run in 6 s, restarted
+  from day 14. Converting the output and plotting:
+
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; source
+      /home/skramer/fdr/bin/activate; python
+      /tmp/claude-1000/-home-skramer-fdm-src-thetis/e8ca8f3a-07e3-4345…)
+  ⎿    t= 0.00d  |u|max=   0.000 p99= 0.000  eta=[  0.000,  0.000]
+       t= 2.00d  |u|max=   0.654 p99= 0.269  eta=[ -0.901,  0.694]
+       t= 4.00d  |u|max=   1.290 p99= 0.457  eta=[ -1.185,  1.468]
+     … +16 lines (ctrl+o to expand)
+  ⎿  1 file changed (binary, mode only or too large to show)
+  ⎿  (timeout 5m)
+
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; python3 - <<'EOF'
+      p='postprocess.py'; s=open(p).read()…)
+  ⎿  Written outputs/diagnostic_timeseries_StHelier_elev.hdf5
+     Written outputs/diagnostic_timeseries_Whitby_elev.hdf5
+     Saving to north_sea_elev_ts_telemac.png
+  ⎿  Updated postprocess.py (+5 -5)
+      13  import datetime
+      14  import os
+      15  import struct
+      16 -import sys                                                     
+      16  
+      17  import h5py
+      18  import numpy as np
+     ...
+       92      import matplotlib.pyplot as plt
+       93      import matplotlib.dates as mdates
+       94      import netCDF4
+       96 -    sys.path.insert(0, example_dir)                           
+       97 -    from model_config import read_station_data                
+       95 +    import csv                                                
+       96  
+       97      def load(f):
+       98          with h5py.File(f, "r") as h:
+     ...
+      101  
+      102      fig = plt.figure(figsize=(30, 10))
+      103      axes = fig.subplots(ncols=4, nrows=2)
+      106 -    for i, (sta, data) in enumerate(read_station_data().items(
+          -)):                                                           
+      104 +    with open(os.path.join(example_dir, "stations_elev.csv")) 
+          +as f:                                                         
+      105 +        stations = list(csv.DictReader(f, skipinitialspace=Tru
+          +e))                                                           
+      106 +    for i, data in enumerate(stations):                       
+      107 +        sta, region = data["name"], data["region"]            
+      108          ax = axes[i // 4, i % 4]
+      109          ax.set_title(sta)
+      109 -        region = data["region"]                               
+      110          suffix = "TG" if region == "NO" else ""
+      111          o = os.path.join(example_dir, "observations", f"{regio
+           n}_TS_TG_{sta}{suffix}_202201.nc")
+      112          time_tel, vals_tel = load(os.path.join(telemac_dir, f"
+           diagnostic_timeseries_{sta}_elev.hdf5"))
+
+  Read 1 file (ctrl+o to expand)
+
+● The fit is reasonable, but Maloy, Aberdeen and Whitby show odd modulations.
+  Before reporting, I'll check whether that's a time-step effect by repeating
+  the full pipeline at dt=300 s (about a minute).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● North Sea gauges (Aberdeen, Whitby, Maloy) show dt=600s hasn't converged,
+  differing ~0.4 m from dt=300s, though Atlantic and Channel gauges agree within
+  5 cm. I'll now run dt=150s to check if dt=300s itself is converged.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● dt=300 s is converged to about 3 cm everywhere except Maloy. I'm making dt=300
+  s the default (it costs about a minute for the whole spinup plus run) and
+  regenerating the outputs and plot.
+
+● Bash(cd /home/skramer/fdm/src/thetis/telemac_northsea; sed -i -e 's/^TIME STEP
+      .*/TIME STEP                        = 300./' -e 's/^NUMBER OF TIME STEPS
+      *= 2016/NUMB…)
+  ⎿  ORIGINAL DATE OF TIME            = 2022;01;15
+     ORIGINAL HOUR OF TIME            = 0;0;0
+     / NOTE: thetis uses dt=3600 s (DIRK22, implicit Coriolis). TELEMAC-2D
+     … +32 lines (ctrl+o to expand)
+  ⎿  Updated t2d_spinup.cas (+6 -5)
+      26  ORIGINAL HOUR OF TIME            = 0;0;0
+      27  / NOTE: thetis uses dt=3600 s (DIRK22, implicit Coriolis). TELE
+          MAC-2D FE
+      28  / treats Coriolis explicitly, which is unstable for f*dt > ~0.1
+           here
+      29 -/ (dt=1200 s and above blow up), so a smaller time step is used
+         -.                                                              
+      30 -TIME STEP                        = 600.                        
+      31 -NUMBER OF TIME STEPS             = 2016                        
+      29 +/ (dt=1200 s and above blow up). dt=600 s is stable but not con
+         +verged                                                         
+      30 +/ in the North Sea (~0.25 m rms vs dt=150 s); dt=300 s is withi
+         +n ~3 cm.                                                       
+      31 +TIME STEP                        = 300.                        
+      32 +NUMBER OF TIME STEPS             = 4032                        
+      33  / thetis spinup exports (incl. gauge time series) every 24 hour
+          s
+      33 -GRAPHIC PRINTOUT PERIOD          = 144                         
+      34 -LISTING PRINTOUT PERIOD          = 144                         
+      34 +GRAPHIC PRINTOUT PERIOD          = 288                         
+      35 +LISTING PRINTOUT PERIOD          = 288                         
+      36  VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,S,H,B'
+      37  MASS-BALANCE                     = YES
+      38  /
+  ⎿  Updated t2d_run.cas (+6 -5)
+      25  ORIGINAL HOUR OF TIME            = 0;0;0
+      26  / NOTE: thetis uses dt=3600 s (DIRK22, implicit Coriolis). TELE
+          MAC-2D FE
+      27  / treats Coriolis explicitly, which is unstable for f*dt > ~0.1
+           here
+      28 -/ (dt=1200 s and above blow up), so a smaller time step is used
+         -.                                                              
+      29 -TIME STEP                        = 600.                        
+      30 -NUMBER OF TIME STEPS             = 432                         
+      28 +/ (dt=1200 s and above blow up). dt=600 s is stable but not con
+         +verged                                                         
+      29 +/ in the North Sea (~0.25 m rms vs dt=150 s); dt=300 s is withi
+         +n ~3 cm.                                                       
+      30 +TIME STEP                        = 300.                        
+      31 +NUMBER OF TIME STEPS             = 864                         
+      32  / hourly exports, as in thetis
+      32 -GRAPHIC PRINTOUT PERIOD          = 6                           
+      33 -LISTING PRINTOUT PERIOD          = 6                           
+      33 +GRAPHIC PRINTOUT PERIOD          = 12                          
+      34 +LISTING PRINTOUT PERIOD          = 12                          
+      35  VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,S,H,B'
+      36  MASS-BALANCE                     = YES
+      37  /
+  ⎿  Updated log_spinup.txt (+96 -96)
+      38  ... checking parallelisation
+      39  
+      40  ... handling temporary directories
+      41 -         copying: t2d_spinup.cas -> /home/skramer/fdm/src/theti
+         -s/telemac_northsea/t2d_spinup.cas_2026-10-01-17h20min53s/T2DCAS
+      42 -         copying: telemac2d.dico -> /home/skramer/fdm/src/theti
+         -s/telemac_northsea/t2d_spinup.cas_2026-10-01-17h20min53s/T2DDIC
+         -O                                                              
+      43 -         copying: geo_north_sea.slf -> /home/skramer/fdm/src/th
+         -etis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h20min53s/T2D
+         -GEO                                                            
+      44 -         copying: geo_north_sea.cli -> /home/skramer/fdm/src/th
+         -etis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h20min53s/T2D
+         -CLI                                                            
+      45 -         copying: liq_spinup.txt -> /home/skramer/fdm/src/theti
+         -s/telemac_northsea/t2d_spinup.cas_2026-10-01-17h20min53s/T2DIMP
+      46 -         copying: stations_spinup.txt -> /home/skramer/fdm/src/
+         -thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h20min53s/T
+         -2DCO1                                                          
+      41 +         copying: t2d_spinup.cas -> /home/skramer/fdm/src/theti
+         +s/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DCAS
+      42 +         copying: telemac2d.dico -> /home/skramer/fdm/src/theti
+         +s/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DDIC
+         +O                                                              
+      43 +         copying: geo_north_sea.slf -> /home/skramer/fdm/src/th
+         +etis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2D
+         +GEO                                                            
+      44 +         copying: geo_north_sea.cli -> /home/skramer/fdm/src/th
+         +etis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2D
+         +CLI                                                            
+      45 +         copying: liq_spinup.txt -> /home/skramer/fdm/src/theti
+         +s/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T2DIMP
+      46 +         copying: stations_spinup.txt -> /home/skramer/fdm/src/
+         +thetis/telemac_northsea/t2d_spinup.cas_2026-10-01-17h25min40s/T
+         +2DCO1                                                          
+      47  
+      48  ... checking the executable
+      49    ~> Compiling Fortran files
+     ...
+      56  
+      57  
+      58  
+      59 -In /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas
+         -_2026-10-01-17h20min53s:                                       
+      60 -mpiexec -n 1 /home/skramer/fdm/src/thetis/telemac_northsea/t2d_
+         -spinup.cas_2026-10-01-17h20min53s/telemac2d                    
+      59 +In /home/skramer/fdm/src/thetis/telemac_northsea/t2d_spinup.cas
+         +_2026-10-01-17h25min40s:                                       
+      60 +mpiexec -n 1 /home/skramer/fdm/src/thetis/telemac_northsea/t2d_
+         +spinup.cas_2026-10-01-17h25min40s/telemac2d                    
+      61  
+      62  
+      63   MASTER PROCESSOR NUMBER            0  OF THE GROUP OF         
+             1
+      64 - EXECUTABLE FILE: /home/skramer/fdm/src/thetis/telemac_northsea
+         -/t2d_spinup.cas_2026-10-01-17h20min53s/A.EXE                   
+      64 + EXECUTABLE FILE: /home/skramer/fdm/src/thetis/telemac_northsea
+         +/t2d_spinup.cas_2026-10-01-17h25min40s/A.EXE                   
+      65   LISTING OF TELEMAC2D------------------------------------------
+          ------------------------------------
+      66  
+      67                  TTTTT  EEEEE  L      EEEEE  M   M  AAAAA  CCCCC
+     ...
+      397            COEFFICIENT', IT IS UNIFORM IN SPACE
+      398  
+      399  ==============================================================
+           ==================
+      400 - ITERATION      144    TIME:    1 D  0 H  0 MN   0.0000 S   ( 
+          -   86400.0000 S)                                              
+      400 + ITERATION      288    TIME:    1 D  0 H  0 MN   0.0000 S   ( 
+          +   86400.0000 S)                                              
+      401   ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+      402 - FOR EXAMPLE AT BOUNDARY POINT NUMBER          912            
+     … 316 more lines (ctrl+o to expand)
+  ⎿  … 6 more files changed (part of the diff is unavailable)
+  ⎿  (timeout 10m)
+
+  Read 1 file (ctrl+o to expand)
+
+● The TELEMAC-2D version of the North Sea example is set up in telemac_northsea/
+  and runs end to end. The one real difference from thetis is the time step:
+  TELEMAC is unstable at thetis's dt = 3600 s, so it uses 300 s. Mesh, forcing
+  and gauge outputs match thetis.
+
+  The simulated gauge levels match observations well
+  (north_sea_elev_ts_telemac.png). I couldn't compare against thetis itself,
+  because there's no thetis outputs/ from run.py, and outputs_spinup stops after
+  1 day.
+
+  Workflow
+  python prepare_telemac.py                       # needs firedrake + thetis
+  source ~/prj/telemac/setenv_telemac.sh
+  telemac2d.py t2d_spinup.cas                     # 2022-01-01 → 01-15, ramped 
+  forcing
+  telemac2d.py t2d_run.cas                        # 2022-01-15 → 01-18, restarts
+  from the spinup
+  python postprocess.py --plot                    # gauge output → thetis-style 
+  hdf5 + plot
+  Each run takes well under a minute.
+
+  What matches thetis
+  - Mesh and bathymetry: taken from north_sea_bathymetry.h5 (6396 nodes, P1
+    bathymetry). I didn't use north_sea.msh, which is a different mesh (6565
+    nodes).
+  - Physics: Manning n = 0.03, no viscosity, no wetting and drying.
+  - Coriolis: f = 2Ω sin(lat), computed per node with thetis's coordinate
+    system. TELEMAC only offers a constant Coriolis value in Cartesian
+    coordinates, so user_fortran/prosou.f overrides it to read f from the
+    geometry file.
+  - Tidal forcing: the boundary elevations come from thetis's own
+    TPXOTidalBoundaryForcing, with the same 8 constituents, start dates and
+    14-day linear ramp. They're written every 300 s at each open-boundary node,
+    so TELEMAC gets the same values thetis does, not its own TPXO interpolation.
+  - Gauges: the same 8 locations from stations_elev.csv, output daily in the
+    spinup and hourly in the run, as in thetis. postprocess.py writes them as
+    diagnostic_timeseries_<sta>_elev.hdf5 in thetis's format.
+
+  Choices for you
+  1. Time step (the main difference). TELEMAC's finite-element solver treats
+     Coriolis explicitly, and with f·dt ≈ 0.44 it blows up within a few days. I
+     tested:
+
+  | dt                      | Result
+              |
+  |-------------------------|---------------------------------------------------
+  -------------|
+  | 3600 s without Coriolis | stable
+              |
+  | 3600 s with θ = 1       | still blows up
+              |
+  | 1200 s and 1800 s       | go unstable over the 14-day spinup
+              |
+  | 600 s                   | stable, but ~0.25 m rms off dt = 150 s at the
+  North Sea gauges |
+  | 300 s                   | within ~3 cm of dt = 150 s everywhere except Maloy
+  (~0.2 m)    |
+     I chose 300 s. Getting dt = 3600 s to work would mean making Coriolis
+     implicit inside TELEMAC's wave-equation solver, which changes its core
+     numerics. I didn't attempt that; say if you want me to.
+  2. Discretisation. Thetis uses DG-P1 with the DIRK22 time stepper. TELEMAC
+     uses its standard P1-P1 wave-equation scheme with θ = 0.55, characteristics
+     for advection and a CG solver at 1e-8. These are inherently different.
+  3. Open boundary. Thetis imposes elevation weakly with an external velocity
+     of 0. In TELEMAC the elevation is strongly imposed and the velocity is left
+     free (code 5 4 4). The two nodes where the open boundary meets the coast
+     are set as solid.
+  4. Restart. The run restarts from TELEMAC's own day-14 spinup state, just as
+     thetis restarts from its own.
+
+  Environment notes
+  - The ~/fdm venv can't import firedrake: the firedrake checkout is newer than
+    the installed fenics-ufl. I used ~/fdr (its own thetis checkout,
+    2026.8.dev4) for preprocessing and plotting, and didn't change either
+    environment.
+  - In the run file I removed COMPUTATION CONTINUED, which v9 dropped; PREVIOUS 
+    COMPUTATION FILE alone triggers the restart.
+  - I set MAXIMUM NUMBER OF BOUNDARIES = 3000: TELEMAC sizes its arrays for
+    per-node boundary data from that keyword, and we have 2279 boundary nodes.
+
+✻ Crunched for 29m 58s · done 17:27
+
+※ recap: You asked for a TELEMAC replica of the thetis North Sea example; it's set up in telemac_northsea and runs, but uses dt=300 s because TELEMAC is unstable at 3600 s. Next, run thetis's run.py so the two models can be compared directly. (disable recaps in /config)
+
+❯ is there a way to save the text output, i.e. our conversation, in this        
+  session into a .txt file?                                                     
+
+● Yes. Type this at the Claude Code prompt:
+
+  /export conversation.txt
+
+  That writes the conversation as plain text to the file you name. If you run
+  /export with no filename, it offers to copy the conversation to the clipboard
+  or save it to a file.
+
+  Claude Code also keeps the full session automatically as JSON Lines (.jsonl)
+  under ~/.claude/projects/-home-skramer-fdm-src-thetis/. That copy includes
+  every tool call and its output, so it's more complete but much less readable
+  than the /export text.
+
+✻ Crunched for 7s · done 17:52

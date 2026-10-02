@@ -1,0 +1,75 @@
+/---------------------------------------------------------------------
+/ TELEMAC-2D replica of the Thetis North Sea example: spin-up run
+/ 2022-01-01 -> 2022-01-15, tidal forcing ramped up linearly over the
+/ full 14 days (ramp included in liq_spinup.txt)
+/ cf. examples/north_sea/spinup.py and model_config.py
+/---------------------------------------------------------------------
+TITLE = 'NORTH SEA SPINUP (THETIS REPLICA)'
+/
+/ FILES
+/
+GEOMETRY FILE                    = geo_north_sea.slf
+GEOMETRY FILE FORMAT             = 'SERAFIND'
+BOUNDARY CONDITIONS FILE         = geo_north_sea.cli
+LIQUID BOUNDARIES FILE           = liq_spinup.txt
+FORTRAN FILE                     = 'user_fortran'
+RESULTS FILE                     = r2d_spinup.slf
+RESULTS FILE FORMAT              = 'SERAFIND'
+TIME SERIES COORDINATES FILE 1   = stations_spinup.txt
+TIME SERIES FILE 1               = ts_spinup.slf
+TIME SERIES FILE 1 FORMAT        = 'SERAFIND'
+INTERPOLATION METHOD FOR TIME SERIES = 1
+/
+/ TIME
+/
+ORIGINAL DATE OF TIME            = 2022;01;01
+ORIGINAL HOUR OF TIME            = 0;0;0
+/ NOTE: thetis uses dt=3600 s (DIRK22, implicit Coriolis). TELEMAC-2D FE
+/ treats Coriolis explicitly, which is unstable for f*dt > ~0.1 here
+/ (dt=1200 s and above blow up). dt=600 s is stable but not converged
+/ in the North Sea (~0.25 m rms vs dt=150 s); dt=300 s is within ~3 cm.
+TIME STEP                        = 300.
+NUMBER OF TIME STEPS             = 4032
+/ thetis spinup exports (incl. gauge time series) every 24 hours
+GRAPHIC PRINTOUT PERIOD          = 288
+LISTING PRINTOUT PERIOD          = 288
+VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,S,H,B'
+MASS-BALANCE                     = YES
+/
+/ INITIAL CONDITIONS: at rest, zero elevation
+/
+INITIAL CONDITIONS               = 'CONSTANT ELEVATION'
+INITIAL ELEVATION                = 0.
+/
+/ BOUNDARY CONDITIONS: node-by-node prescribed elevation on open boundary
+/
+OPTION FOR LIQUID BOUNDARIES FILE = 2
+/ arrays for node-by-node liquid boundary data are sized with this
+MAXIMUM NUMBER OF BOUNDARIES     = 3000
+/
+/
+/ PHYSICS (as in model_config.py)
+/
+/ Manning n = 0.03
+LAW OF BOTTOM FRICTION           = 4
+FRICTION COEFFICIENT             = 0.03
+/ Coriolis f = 2*7.292e-5*sin(lat), read node-wise from variable CORIOLIS
+/ in the geometry file by user_fortran/prosou.f (coefficient below unused)
+CORIOLIS                         = YES
+CORIOLIS COEFFICIENT             = 1.2E-4
+/ thetis setup has no viscosity
+DIFFUSION OF VELOCITY            = NO
+/ no wetting and drying in thetis (bathymetry capped at 10 m)
+TIDAL FLATS                      = NO
+/
+/ NUMERICS
+/
+DISCRETIZATIONS IN SPACE         = 11 ; 11
+TREATMENT OF THE LINEAR SYSTEM   = 2
+FREE SURFACE GRADIENT COMPATIBILITY = 0.9
+IMPLICITATION FOR DEPTH          = 0.55
+IMPLICITATION FOR VELOCITY       = 0.55
+SCHEME FOR ADVECTION OF VELOCITIES = 1
+SOLVER                           = 1
+SOLVER ACCURACY                  = 1.E-8
+MAXIMUM NUMBER OF ITERATIONS FOR SOLVER = 1000

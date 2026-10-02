@@ -1,0 +1,1528 @@
+
+
+Loading configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   ___      __              _              
+  / _ \    /_ |            | |             
+ | (_) |    | | ______   __| |  ___ __   __
+  \__, |    | ||______| / _` | / _ \\ \ / /
+    / /  _  | |        | (_| ||  __/ \ V / 
+   /_/  (_) |_|         \__,_| \___|  \_/  
+                                           
+                                           
+
+
+Running your CAS file(s) for:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    +> root:    /home/skramer/prj/telemac
+    +> build:   /home/skramer/prj/telemac/builds/my_custom_build
+    +> modules: api / artemis / bief / damocles
+                gaia  / gretel  / hermes  / khione
+                mascaret  / nestor  / parallel  / partel
+                postel3d  / special  / stbtel  / telemac2d
+                telemac3d / tomawac / waqtel
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+... processing the steering file
+  ~> Checking keyword/rubrique coherence
+
+... checking parallelisation
+
+... handling temporary directories
+         copying: t2d_run.cas -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/T2DCAS
+         copying: telemac2d.dico -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/T2DDICO
+         copying: geo_north_sea.slf -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/T2DGEO
+         copying: geo_north_sea.cli -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/T2DCLI
+         copying: liq_run.txt -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/T2DIMP
+         copying: stations_run.txt -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/T2DCO1
+         copying: r2d_spinup.slf -> /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/T2DPRE
+
+... checking the executable
+  ~> Compiling Fortran files
+         compiling: prosou.f ... completed
+         created: libuser_fortran.so
+
+
+Running your simulation(s) :
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+In /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s:
+mpiexec -n 1 /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/telemac2d
+
+
+ MASTER PROCESSOR NUMBER            0  OF THE GROUP OF            1
+ EXECUTABLE FILE: /home/skramer/fdm/src/thetis/telemac_northsea/t2d_run.cas_2026-10-01-17h26min34s/A.EXE
+ LISTING OF TELEMAC2D------------------------------------------------------------------------------
+
+                TTTTT  EEEEE  L      EEEEE  M   M  AAAAA  CCCCC
+                  T    E      L      E      MM MM  A   A  C
+                  T    EEE    L      EEE    M M M  AAAAA  C
+                  T    E      L      E      M   M  A   A  C
+                  T    EEEEE  LLLLL  EEEEE  M   M  A   A  CCCCC
+
+                        2D    VERSION 9.1    FORTRAN 2003
+
+                        ~^~^~^~^~^~^~^~^~^~^~^^~^~^~^~^~^~
+                          ~                            ~
+                               \   '    o      '
+                               /\ o       \  o
+                             >=)'>    '   /\ '
+                               \/   \   >=)'>        ~
+                               /    /\    \/
+                        ~         >=)'>   /     .
+                                    \/                   )
+                                    /                   (
+                                          ~          )   )
+                          }     ~              (    (   (
+                         {                      )    )   )
+                          }  }         .       (    (   (
+                         {  {               /^^^^^^^^^^^^
+                        ^^^^^^^^^\         /
+                                  ^^^^^^^^^
+
+ DIFFERENT NUMBER OF PARALLEL PROCESSORS:
+ DECLARED BEFORE (CASE OF COUPLING ?):           1
+ TELEMAC-2D :           0
+ VALUE            1  IS KEPT
+
+                   ********************************************
+                   *               LECDON:                    *
+                   *        AFTER CALLING DAMOCLES            *
+                   *        CHECKING OF DATA  READ            *
+                   *         IN THE STEERING FILE             *
+                   ********************************************
+
+ TREATMENT OF NEGATIVE DEPTHS =           2
+ MASS-LUMPING ON H AUTOMATICALLY SET TO 1.D0
+ CONTINUITY CORRECTION AUTOMATICALLY SET TO YES
+ SUPG OPTION AUTOMATICALLY SET TO 0 FOR H
+
+ EXITING LECDON. NAME OF THE STUDY:
+ NORTH SEA RUN (THETIS REPLICA)
+
+ OPENING FILES FOR TELEMAC2D
+ OPENING: T2DGEO-geo_north_sea.slf
+ OPENING: T2DCLI-geo_north_sea.cli
+ OPENING: T2DCO1-stations_run.txt
+ OPENING: T2DPRE-r2d_spinup.slf
+ OPENING: T2DRES-r2d_run.slf
+ OPENING: T2DHI1-ts_run.slf
+ OPENING: T2DIMP-liq_run.txt
+
+                          *****************************
+                          *    MEMORY ORGANIZATION    *
+                          *****************************
+
+ READ_MESH_INFO: TITLE= NORTH SEA (THETIS MESH)
+            NUMBER OF ELEMENTS:    10583
+            NUMBER OF POINTS:     6396
+
+            TYPE OF ELEMENT: TRIANGLE
+            TYPE OF BND ELEMENT: POINT
+
+            DOUBLE PRECISION FORMAT (R8)
+
+ MXPTEL (BIEF) : MAXIMUM NUMBER OF ELEMENTS AROUND A POINT:   9
+                 MAXIMUM NUMBER OF POINTS AROUND A POINT:   9
+ USER_CORRXY (BIEF):NO MODIFICATION OF COORDINATES
+
+ MESH: MESH   ALLOCATED
+
+                     *************************************
+                     *    END OF MEMORY ORGANIZATION:    *
+                     *************************************
+
+ INITIALIZING TELEMAC2D FOR
+ INBIEF (BIEF): NOT A VECTOR MACHINE (ACCORDING TO YOUR DATA)
+ STRCHE (BIEF): NO MODIFICATION OF FRICTION
+
+ THERE IS    36 ISLAND(S) IN THE DOMAIN
+
+ THERE IS     1 LIQUID BOUNDARIES:
+
+ BOUNDARY    1 :
+  BEGINS AT BOUNDARY POINT:      869 , WITH GLOBAL NUMBER:      5186
+  AND COORDINATES:     1093522.           7100862.
+  ENDS AT BOUNDARY POINT:       20 , WITH GLOBAL NUMBER:       318
+  AND COORDINATES:     357033.6           5355242.
+
+ THERE IS    37 SOLID BOUNDARIES:
+
+ BOUNDARY    1 :
+  BEGINS AT BOUNDARY POINT:       20 , WITH GLOBAL NUMBER:       318
+  AND COORDINATES:     357033.6           5355242.
+  ENDS AT BOUNDARY POINT:      869 , WITH GLOBAL NUMBER:      5186
+  AND COORDINATES:     1093522.           7100862.
+
+ BOUNDARY    2 :
+  BEGINS AT BOUNDARY POINT:     1397 , WITH GLOBAL NUMBER:      1210
+  AND COORDINATES:     4632.359           5739915.
+  ENDS AT BOUNDARY POINT:     1397 , WITH GLOBAL NUMBER:      1210
+  AND COORDINATES:     4632.359           5739915.
+
+ BOUNDARY    3 :
+  BEGINS AT BOUNDARY POINT:     2242 , WITH GLOBAL NUMBER:       254
+  AND COORDINATES:     306790.4           5551082.
+  ENDS AT BOUNDARY POINT:     2242 , WITH GLOBAL NUMBER:       254
+  AND COORDINATES:     306790.4           5551082.
+
+ BOUNDARY    4 :
+  BEGINS AT BOUNDARY POINT:     1131 , WITH GLOBAL NUMBER:      1376
+  AND COORDINATES:     601015.4           5613245.
+  ENDS AT BOUNDARY POINT:     1131 , WITH GLOBAL NUMBER:      1376
+  AND COORDINATES:     601015.4           5613245.
+
+ BOUNDARY    5 :
+  BEGINS AT BOUNDARY POINT:     1201 , WITH GLOBAL NUMBER:       633
+  AND COORDINATES:     399485.5           5894602.
+  ENDS AT BOUNDARY POINT:     1201 , WITH GLOBAL NUMBER:       633
+  AND COORDINATES:     399485.5           5894602.
+
+ BOUNDARY    6 :
+  BEGINS AT BOUNDARY POINT:      970 , WITH GLOBAL NUMBER:       714
+  AND COORDINATES:     392632.9           5901679.
+  ENDS AT BOUNDARY POINT:      970 , WITH GLOBAL NUMBER:       714
+  AND COORDINATES:     392632.9           5901679.
+
+ BOUNDARY    7 :
+  BEGINS AT BOUNDARY POINT:     1160 , WITH GLOBAL NUMBER:      1234
+  AND COORDINATES:     382644.3           5991608.
+  ENDS AT BOUNDARY POINT:     1160 , WITH GLOBAL NUMBER:      1234
+  AND COORDINATES:     382644.3           5991608.
+
+ BOUNDARY    8 :
+  BEGINS AT BOUNDARY POINT:     1192 , WITH GLOBAL NUMBER:      2341
+  AND COORDINATES:     278800.9           6177090.
+  ENDS AT BOUNDARY POINT:     1192 , WITH GLOBAL NUMBER:      2341
+  AND COORDINATES:     278800.9           6177090.
+
+ BOUNDARY    9 :
+  BEGINS AT BOUNDARY POINT:     1094 , WITH GLOBAL NUMBER:      2020
+  AND COORDINATES:     309842.9           6188999.
+  ENDS AT BOUNDARY POINT:     1094 , WITH GLOBAL NUMBER:      2020
+  AND COORDINATES:     309842.9           6188999.
+
+ BOUNDARY   10 :
+  BEGINS AT BOUNDARY POINT:     1136 , WITH GLOBAL NUMBER:      1796
+  AND COORDINATES:     356956.4           6147232.
+  ENDS AT BOUNDARY POINT:     1136 , WITH GLOBAL NUMBER:      1796
+  AND COORDINATES:     356956.4           6147232.
+
+ BOUNDARY   11 :
+  BEGINS AT BOUNDARY POINT:      996 , WITH GLOBAL NUMBER:      2531
+  AND COORDINATES:     258645.9           6263014.
+  ENDS AT BOUNDARY POINT:      996 , WITH GLOBAL NUMBER:      2531
+  AND COORDINATES:     258645.9           6263014.
+
+ BOUNDARY   12 :
+  BEGINS AT BOUNDARY POINT:     1217 , WITH GLOBAL NUMBER:      2332
+  AND COORDINATES:     292736.8           6244460.
+  ENDS AT BOUNDARY POINT:     1217 , WITH GLOBAL NUMBER:      2332
+  AND COORDINATES:     292736.8           6244460.
+
+ BOUNDARY   13 :
+  BEGINS AT BOUNDARY POINT:      992 , WITH GLOBAL NUMBER:      2506
+  AND COORDINATES:     272197.5           6276148.
+  ENDS AT BOUNDARY POINT:      992 , WITH GLOBAL NUMBER:      2506
+  AND COORDINATES:     272197.5           6276148.
+
+ BOUNDARY   14 :
+  BEGINS AT BOUNDARY POINT:      978 , WITH GLOBAL NUMBER:      2776
+  AND COORDINATES:     227336.0           6320980.
+  ENDS AT BOUNDARY POINT:      978 , WITH GLOBAL NUMBER:      2776
+  AND COORDINATES:     227336.0           6320980.
+
+ BOUNDARY   15 :
+  BEGINS AT BOUNDARY POINT:     1020 , WITH GLOBAL NUMBER:      1455
+  AND COORDINATES:     369262.2           6181350.
+  ENDS AT BOUNDARY POINT:     1020 , WITH GLOBAL NUMBER:      1455
+  AND COORDINATES:     369262.2           6181350.
+
+ BOUNDARY   16 :
+  BEGINS AT BOUNDARY POINT:     1074 , WITH GLOBAL NUMBER:      2802
+  AND COORDINATES:     239852.5           6337250.
+  ENDS AT BOUNDARY POINT:     1074 , WITH GLOBAL NUMBER:      2802
+  AND COORDINATES:     239852.5           6337250.
+
+ BOUNDARY   17 :
+  BEGINS AT BOUNDARY POINT:      986 , WITH GLOBAL NUMBER:      2961
+  AND COORDINATES:     240728.7           6370734.
+  ENDS AT BOUNDARY POINT:      986 , WITH GLOBAL NUMBER:      2961
+  AND COORDINATES:     240728.7           6370734.
+
+ BOUNDARY   18 :
+  BEGINS AT BOUNDARY POINT:      982 , WITH GLOBAL NUMBER:      2485
+  AND COORDINATES:     298048.3           6316491.
+  ENDS AT BOUNDARY POINT:      982 , WITH GLOBAL NUMBER:      2485
+  AND COORDINATES:     298048.3           6316491.
+
+ BOUNDARY   19 :
+  BEGINS AT BOUNDARY POINT:     1105 , WITH GLOBAL NUMBER:      3187
+  AND COORDINATES:     228595.4           6393121.
+  ENDS AT BOUNDARY POINT:     1105 , WITH GLOBAL NUMBER:      3187
+  AND COORDINATES:     228595.4           6393121.
+
+ BOUNDARY   20 :
+  BEGINS AT BOUNDARY POINT:     1302 , WITH GLOBAL NUMBER:      2397
+  AND COORDINATES:     316369.0           6326195.
+  ENDS AT BOUNDARY POINT:     1302 , WITH GLOBAL NUMBER:      2397
+  AND COORDINATES:     316369.0           6326195.
+
+ BOUNDARY   21 :
+  BEGINS AT BOUNDARY POINT:     1304 , WITH GLOBAL NUMBER:      3078
+  AND COORDINATES:     261969.8           6407907.
+  ENDS AT BOUNDARY POINT:     1304 , WITH GLOBAL NUMBER:      3078
+  AND COORDINATES:     261969.8           6407907.
+
+ BOUNDARY   22 :
+  BEGINS AT BOUNDARY POINT:     1145 , WITH GLOBAL NUMBER:      2810
+  AND COORDINATES:     962520.1           5750749.
+  ENDS AT BOUNDARY POINT:     1145 , WITH GLOBAL NUMBER:      2810
+  AND COORDINATES:     962520.1           5750749.
+
+ BOUNDARY   23 :
+  BEGINS AT BOUNDARY POINT:     1011 , WITH GLOBAL NUMBER:      3162
+  AND COORDINATES:     1020843.           5900635.
+  ENDS AT BOUNDARY POINT:     1011 , WITH GLOBAL NUMBER:      3162
+  AND COORDINATES:     1020843.           5900635.
+
+ BOUNDARY   24 :
+  BEGINS AT BOUNDARY POINT:      967 , WITH GLOBAL NUMBER:      3398
+  AND COORDINATES:     1025954.           5926511.
+  ENDS AT BOUNDARY POINT:      967 , WITH GLOBAL NUMBER:      3398
+  AND COORDINATES:     1025954.           5926511.
+
+ BOUNDARY   25 :
+  BEGINS AT BOUNDARY POINT:     1002 , WITH GLOBAL NUMBER:      3400
+  AND COORDINATES:     1042380.           5943410.
+  ENDS AT BOUNDARY POINT:     1002 , WITH GLOBAL NUMBER:      3400
+  AND COORDINATES:     1042380.           5943410.
+
+ BOUNDARY   26 :
+  BEGINS AT BOUNDARY POINT:     1182 , WITH GLOBAL NUMBER:      4885
+  AND COORDINATES:     503991.2           6511545.
+  ENDS AT BOUNDARY POINT:     1182 , WITH GLOBAL NUMBER:      4885
+  AND COORDINATES:     503991.2           6511545.
+
+ BOUNDARY   27 :
+  BEGINS AT BOUNDARY POINT:      974 , WITH GLOBAL NUMBER:      3335
+  AND COORDINATES:     1071547.           5956141.
+  ENDS AT BOUNDARY POINT:      974 , WITH GLOBAL NUMBER:      3335
+  AND COORDINATES:     1071547.           5956141.
+
+ BOUNDARY   28 :
+  BEGINS AT BOUNDARY POINT:     1042 , WITH GLOBAL NUMBER:      4554
+  AND COORDINATES:     300815.6           6813920.
+  ENDS AT BOUNDARY POINT:     1042 , WITH GLOBAL NUMBER:      4554
+  AND COORDINATES:     300815.6           6813920.
+
+ BOUNDARY   29 :
+  BEGINS AT BOUNDARY POINT:     1009 , WITH GLOBAL NUMBER:      4439
+  AND COORDINATES:     304161.5           6853924.
+  ENDS AT BOUNDARY POINT:     1009 , WITH GLOBAL NUMBER:      4439
+  AND COORDINATES:     304161.5           6853924.
+
+ BOUNDARY   30 :
+  BEGINS AT BOUNDARY POINT:     1035 , WITH GLOBAL NUMBER:      4046
+  AND COORDINATES:     277004.2           6885211.
+  ENDS AT BOUNDARY POINT:     1035 , WITH GLOBAL NUMBER:      4046
+  AND COORDINATES:     277004.2           6885211.
+
+ BOUNDARY   31 :
+  BEGINS AT BOUNDARY POINT:     1120 , WITH GLOBAL NUMBER:      4375
+  AND COORDINATES:     299791.1           6876521.
+  ENDS AT BOUNDARY POINT:     1120 , WITH GLOBAL NUMBER:      4375
+  AND COORDINATES:     299791.1           6876521.
+
+ BOUNDARY   32 :
+  BEGINS AT BOUNDARY POINT:     1060 , WITH GLOBAL NUMBER:      4217
+  AND COORDINATES:     292884.2           6901812.
+  ENDS AT BOUNDARY POINT:     1060 , WITH GLOBAL NUMBER:      4217
+  AND COORDINATES:     292884.2           6901812.
+
+ BOUNDARY   33 :
+  BEGINS AT BOUNDARY POINT:     1256 , WITH GLOBAL NUMBER:      5564
+  AND COORDINATES:     594448.9           6637718.
+  ENDS AT BOUNDARY POINT:     1256 , WITH GLOBAL NUMBER:      5564
+  AND COORDINATES:     594448.9           6637718.
+
+ BOUNDARY   34 :
+  BEGINS AT BOUNDARY POINT:     1052 , WITH GLOBAL NUMBER:      5607
+  AND COORDINATES:     603564.0           6707158.
+  ENDS AT BOUNDARY POINT:     1052 , WITH GLOBAL NUMBER:      5607
+  AND COORDINATES:     603564.0           6707158.
+
+ BOUNDARY   35 :
+  BEGINS AT BOUNDARY POINT:     1029 , WITH GLOBAL NUMBER:      5661
+  AND COORDINATES:     610203.2           6732453.
+  ENDS AT BOUNDARY POINT:     1029 , WITH GLOBAL NUMBER:      5661
+  AND COORDINATES:     610203.2           6732453.
+
+ BOUNDARY   36 :
+  BEGINS AT BOUNDARY POINT:     1054 , WITH GLOBAL NUMBER:      6038
+  AND COORDINATES:     970626.1           6654986.
+  ENDS AT BOUNDARY POINT:     1054 , WITH GLOBAL NUMBER:      6038
+  AND COORDINATES:     970626.1           6654986.
+
+ BOUNDARY   37 :
+  BEGINS AT BOUNDARY POINT:     1087 , WITH GLOBAL NUMBER:      6189
+  AND COORDINATES:     957520.3           6739922.
+  ENDS AT BOUNDARY POINT:     1087 , WITH GLOBAL NUMBER:      6189
+  AND COORDINATES:     957520.3           6739922.
+
+ USER_CORFON (TELEMAC2D): NO MODIFICATION OF BOTTOM
+
+ CORFON (TELEMAC2D): NO BOTTOM SMOOTHINGS
+
+ TITLE OF PREVIOUS COMPUTATION: NORTH SEA SPINUP (THETIS REPLICA)
+
+ NAME: VELOCITY U        UNIT: M/S
+ NAME: VELOCITY V        UNIT: M/S
+ NAME: WATER DEPTH       UNIT: M
+ NAME: FREE SURFACE      UNIT: M
+ NAME: BOTTOM            UNIT: M
+
+ READ_DATASET : READ OF RECORD    15
+
+ TIME OF RECORD:     1209600.     S
+ ELAPSED TIME RESET TO ZERO
+
+================================================================================
+ ITERATION        0    TIME:   0.0000 S
+ TELEMAC2D INITIALIZED
+ THE LIQUID BOUNDARIES FILE CONTAINS
+         865  LINES WITH:
+ SL(745)       SL(705)       SL(615)       SL(527)       SL(525)       SL(476)       SL(445)       SL(375)       SL(299)       SL(266)       SL(242)       SL(206)       SL(186)       SL(194)       SL(252)       SL(285)       SL(363)       SL(397)       SL(362)       SL(318)       SL(5186)      SL(5355)      SL(5454)      SL(5554)      SL(5649)      SL(5755)      SL(5756)      SL(5760)      SL(5758)      SL(5703)      SL(5701)      SL(5700)      SL(5651)      SL(5598)      SL(5596)      SL(5585)      SL(5550)      SL(5498)      SL(5448)      SL(5439)      SL(5440)      SL(5442)      SL(5388)      SL(5350)      SL(5290)      SL(5236)      SL(5115)      SL(5061)      SL(5007)      SL(5008)      SL(5006)      SL(4911)      SL(4816)      SL(4720)      SL(4616)      SL(4511)      SL(4443)      SL(4322)      SL(4262)      SL(4220)      SL(4105)      SL(4001)      SL(3887)      SL(3773)      SL(3611)      SL(3482)      SL(3421)      SL(3420)      SL(3351)      SL(3309)      SL(3238)      SL(3137)      SL(3050)      SL(3048)      SL(3047)      SL(2970)      SL(2931)      SL(2900)      SL(2865)      SL(2804)      SL(2778)      SL(2708)      SL(2630)      SL(2573)      SL(2539)      SL(2510)      SL(2431)      SL(2348)      SL(2270)      SL(2218)      SL(2190)      SL(2138)      SL(2071)      SL(2016)      SL(1969)      SL(1913)      SL(1848)      SL(1823)      SL(1792)      SL(1726)      SL(1670)      SL(1628)      SL(1560)      SL(1482)      SL(1473)      SL(1440)      SL(1381)      SL(1348)      SL(1269)      SL(1205)      SL(1136)      SL(1072)      SL(1073)      SL(1029)      SL(947)       SL(895)       SL(804)
+ USING STREAMLINE VERSION 9.1 FOR CHARACTERISTICS
+ PROSOU: SPATIALLY VARYING CORIOLIS PARAMETER READ FROM THE GEOMETRY FILE
+ PROSOU : IN CARTESIAN COORDINATES, THE CORIOLIS
+          PARAMETER IS READ IN THE STEERING FILE
+          IT IS THE KEY WORD 'CORIOLIS
+          COEFFICIENT', IT IS UNIFORM IN SPACE
+
+================================================================================
+ ITERATION       12    TIME:  1 H  0 MIN   0.0000 S   (     3600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       76 ITERATIONS, RELATIVE PRECISION:   0.9897943E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534984E+15 M3
+     FLUX BOUNDARY    1:    0.7608255E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =        3600.     S :    0.4285288E-13
+
+================================================================================
+ ITERATION       24    TIME:  2 H  0 MIN   0.0000 S   (     7200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       78 ITERATIONS, RELATIVE PRECISION:   0.9334940E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537733E+15 M3
+     FLUX BOUNDARY    1:    0.7390100E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =        7200.     S :   -0.3422553E-13
+
+================================================================================
+ ITERATION       36    TIME:  3 H  0 MIN   0.0000 S   (    10800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.9406859E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540063E+15 M3
+     FLUX BOUNDARY    1:    0.5434506E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1080E+05 S :    0.7715670E-14
+
+================================================================================
+ ITERATION       48    TIME:  4 H  0 MIN   0.0000 S   (    14400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.7624067E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9541408E+15 M3
+     FLUX BOUNDARY    1:    0.2119415E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1440E+05 S :    0.8031348E-13
+
+================================================================================
+ ITERATION       60    TIME:  5 H  0 MIN   0.0000 S   (    18000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.8796476E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9541440E+15 M3
+     FLUX BOUNDARY    1:   -0.1655931E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1800E+05 S :    0.1251595E-12
+
+================================================================================
+ ITERATION       72    TIME:  6 H  0 MIN   0.0000 S   (    21600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.8205021E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540159E+15 M3
+     FLUX BOUNDARY    1:   -0.4990464E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2160E+05 S :   -0.4448865E-13
+
+================================================================================
+ ITERATION       84    TIME:  7 H  0 MIN   0.0000 S   (    25200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8319623E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537925E+15 M3
+     FLUX BOUNDARY    1:   -0.6966659E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2520E+05 S :    0.1255572E-13
+
+================================================================================
+ ITERATION       96    TIME:  8 H  0 MIN   0.0000 S   (    28800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       76 ITERATIONS, RELATIVE PRECISION:   0.8453135E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9535305E+15 M3
+     FLUX BOUNDARY    1:   -0.7242085E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2880E+05 S :    0.5867633E-13
+
+================================================================================
+ ITERATION      108    TIME:  9 H  0 MIN   0.0000 S   (    32400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.9247338E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9532947E+15 M3
+     FLUX BOUNDARY    1:   -0.5742600E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.3240E+05 S :    0.8856368E-13
+
+================================================================================
+ ITERATION      120    TIME: 10 H  0 MIN   0.0000 S   (    36000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.8185576E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9531422E+15 M3
+     FLUX BOUNDARY    1:   -0.2814820E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.3600E+05 S :    0.4746276E-13
+
+================================================================================
+ ITERATION      132    TIME: 11 H  0 MIN   0.0000 S   (    39600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          962
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       74 ITERATIONS, RELATIVE PRECISION:   0.9261298E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9531094E+15 M3
+     FLUX BOUNDARY    1:     7183759.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.3960E+05 S :   -0.1831416E-13
+
+================================================================================
+ ITERATION      144    TIME: 12 H  0 MIN   0.0000 S   (    43200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.8716635E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9532003E+15 M3
+     FLUX BOUNDARY    1:    0.3955814E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.4320E+05 S :   -0.1340699E-13
+
+================================================================================
+ ITERATION      156    TIME: 13 H  0 MIN   0.0000 S   (    46800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       75 ITERATIONS, RELATIVE PRECISION:   0.9869480E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9533874E+15 M3
+     FLUX BOUNDARY    1:    0.6038546E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.4680E+05 S :   -0.2785764E-13
+
+================================================================================
+ ITERATION      168    TIME: 14 H  0 MIN   0.0000 S   (    50400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.9724272E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9536194E+15 M3
+     FLUX BOUNDARY    1:    0.6510973E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.5040E+05 S :   -0.5215796E-13
+
+================================================================================
+ ITERATION      180    TIME: 15 H  0 MIN   0.0000 S   (    54000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       75 ITERATIONS, RELATIVE PRECISION:   0.9276075E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9538354E+15 M3
+     FLUX BOUNDARY    1:    0.5265787E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.5400E+05 S :    0.2183247E-13
+
+================================================================================
+ ITERATION      192    TIME: 16 H  0 MIN   0.0000 S   (    57600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.7859001E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9539744E+15 M3
+     FLUX BOUNDARY    1:    0.2453443E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.5760E+05 S :    0.1100238E-12
+
+================================================================================
+ ITERATION      204    TIME: 17 H  0 MIN   0.0000 S   (    61200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       82 ITERATIONS, RELATIVE PRECISION:   0.9824063E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9539933E+15 M3
+     FLUX BOUNDARY    1:   -0.1159331E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.6120E+05 S :   -0.2745021E-13
+
+================================================================================
+ ITERATION      216    TIME: 18 H  0 MIN   0.0000 S   (    64800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       81 ITERATIONS, RELATIVE PRECISION:   0.8353126E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9538800E+15 M3
+     FLUX BOUNDARY    1:   -0.4696409E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.6480E+05 S :   -0.1252240E-13
+
+================================================================================
+ ITERATION      228    TIME: 19 H  0 MIN   0.0000 S   (    68400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.7973893E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9536621E+15 M3
+     FLUX BOUNDARY    1:   -0.6949529E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.6840E+05 S :   -0.5786956E-13
+
+================================================================================
+ ITERATION      240    TIME: 20 H  0 MIN   0.0000 S   (    72000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       75 ITERATIONS, RELATIVE PRECISION:   0.9769755E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9533963E+15 M3
+     FLUX BOUNDARY    1:   -0.7453300E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.7200E+05 S :    0.7525426E-14
+
+================================================================================
+ ITERATION      252    TIME: 21 H  0 MIN   0.0000 S   (    75600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.7086602E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9531528E+15 M3
+     FLUX BOUNDARY    1:   -0.5962898E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.7560E+05 S :    0.2788522E-13
+
+================================================================================
+ ITERATION      264    TIME: 22 H  0 MIN   0.0000 S   (    79200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          959
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.7293906E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9529930E+15 M3
+     FLUX BOUNDARY    1:   -0.2957053E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.7920E+05 S :    0.6557154E-13
+
+================================================================================
+ ITERATION      276    TIME: 23 H  0 MIN   0.0000 S   (    82800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          963
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       81 ITERATIONS, RELATIVE PRECISION:   0.9988858E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9529623E+15 M3
+     FLUX BOUNDARY    1:     9815475.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.8280E+05 S :   -0.2408033E-15
+
+================================================================================
+ ITERATION      288    TIME:    1 D  0 H  0 MN   0.0000 S   (    86400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8392980E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9530735E+15 M3
+     FLUX BOUNDARY    1:    0.4830255E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.8640E+05 S :    0.9656952E-13
+
+================================================================================
+ ITERATION      300    TIME:    1 D  1 H  0 MN   0.0000 S   (    90000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       74 ITERATIONS, RELATIVE PRECISION:   0.9585195E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9533070E+15 M3
+     FLUX BOUNDARY    1:    0.7675874E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.9000E+05 S :   -0.4823689E-13
+
+================================================================================
+ ITERATION      312    TIME:    1 D  2 H  0 MN   0.0000 S   (    93600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.8651995E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9536106E+15 M3
+     FLUX BOUNDARY    1:    0.8762057E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.9360E+05 S :   -0.5764554E-13
+
+================================================================================
+ ITERATION      324    TIME:    1 D  3 H  0 MN   0.0000 S   (    97200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       78 ITERATIONS, RELATIVE PRECISION:   0.7901531E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9539145E+15 M3
+     FLUX BOUNDARY    1:    0.7852947E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.9720E+05 S :   -0.8822926E-13
+
+================================================================================
+ ITERATION      336    TIME:    1 D  4 H  0 MN   0.0000 S   (   100800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.7899593E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9541484E+15 M3
+     FLUX BOUNDARY    1:    0.5094985E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1008E+06 S :    0.1437277E-13
+
+================================================================================
+ ITERATION      348    TIME:    1 D  5 H  0 MN   0.0000 S   (   104400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       85 ITERATIONS, RELATIVE PRECISION:   0.9057828E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9542539E+15 M3
+     FLUX BOUNDARY    1:    0.1020401E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1044E+06 S :    0.4104836E-13
+
+================================================================================
+ ITERATION      360    TIME:    1 D  6 H  0 MN   0.0000 S   (   108000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       85 ITERATIONS, RELATIVE PRECISION:   0.8796409E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9542049E+15 M3
+     FLUX BOUNDARY    1:   -0.3322453E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1080E+06 S :    0.1682777E-13
+
+================================================================================
+ ITERATION      372    TIME:    1 D  7 H  0 MN   0.0000 S   (   111600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          955
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.9816784E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540141E+15 M3
+     FLUX BOUNDARY    1:   -0.6747350E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1116E+06 S :   -0.2361871E-13
+
+================================================================================
+ ITERATION      384    TIME:    1 D  8 H  0 MN   0.0000 S   (   115200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          955
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.9149691E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537344E+15 M3
+     FLUX BOUNDARY    1:   -0.8378611E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1152E+06 S :    0.2905684E-13
+
+================================================================================
+ ITERATION      396    TIME:    1 D  9 H  0 MN   0.0000 S   (   118800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.9886316E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534358E+15 M3
+     FLUX BOUNDARY    1:   -0.7934863E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1188E+06 S :    0.1073908E-12
+
+================================================================================
+ ITERATION      408    TIME:    1 D 10 H  0 MN   0.0000 S   (   122400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.9471743E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9531907E+15 M3
+     FLUX BOUNDARY    1:   -0.5598301E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1224E+06 S :    0.5930869E-13
+
+================================================================================
+ ITERATION      420    TIME:    1 D 11 H  0 MN   0.0000 S   (   126000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          955
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.9623804E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9530576E+15 M3
+     FLUX BOUNDARY    1:   -0.1942789E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1260E+06 S :    0.6005386E-13
+
+================================================================================
+ ITERATION      432    TIME:    1 D 12 H  0 MN   0.0000 S   (   129600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.9198942E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9530653E+15 M3
+     FLUX BOUNDARY    1:    0.2039969E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1296E+06 S :    0.5970618E-13
+
+================================================================================
+ ITERATION      444    TIME:    1 D 13 H  0 MN   0.0000 S   (   133200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.7023064E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9532067E+15 M3
+     FLUX BOUNDARY    1:    0.5345455E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1332E+06 S :    0.1129358E-12
+
+================================================================================
+ ITERATION      456    TIME:    1 D 14 H  0 MN   0.0000 S   (   136800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8405479E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534394E+15 M3
+     FLUX BOUNDARY    1:    0.7131547E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1368E+06 S :   -0.5810277E-13
+
+================================================================================
+ ITERATION      468    TIME:    1 D 15 H  0 MN   0.0000 S   (   140400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       78 ITERATIONS, RELATIVE PRECISION:   0.9483915E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537006E+15 M3
+     FLUX BOUNDARY    1:    0.7061472E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1404E+06 S :   -0.1131205E-12
+
+================================================================================
+ ITERATION      480    TIME:    1 D 16 H  0 MN   0.0000 S   (   144000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.9818426E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9539205E+15 M3
+     FLUX BOUNDARY    1:    0.5025857E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1440E+06 S :   -0.1221411E-12
+
+================================================================================
+ ITERATION      492    TIME:    1 D 17 H  0 MN   0.0000 S   (   147600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.8621482E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540341E+15 M3
+     FLUX BOUNDARY    1:    0.1441179E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1476E+06 S :   -0.1924296E-13
+
+================================================================================
+ ITERATION      504    TIME:    1 D 18 H  0 MN   0.0000 S   (   151200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       82 ITERATIONS, RELATIVE PRECISION:   0.8009515E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540046E+15 M3
+     FLUX BOUNDARY    1:   -0.2759181E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1512E+06 S :   -0.6399303E-15
+
+================================================================================
+ ITERATION      516    TIME:    1 D 19 H  0 MN   0.0000 S   (   154800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       84 ITERATIONS, RELATIVE PRECISION:   0.9281802E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9538326E+15 M3
+     FLUX BOUNDARY    1:   -0.6311294E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1548E+06 S :   -0.2767677E-13
+
+================================================================================
+ ITERATION      528    TIME:    1 D 20 H  0 MN   0.0000 S   (   158400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8007218E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9535643E+15 M3
+     FLUX BOUNDARY    1:   -0.8146843E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1584E+06 S :    0.5325064E-13
+
+================================================================================
+ ITERATION      540    TIME:    1 D 21 H  0 MN   0.0000 S   (   162000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       74 ITERATIONS, RELATIVE PRECISION:   0.9908228E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9532714E+15 M3
+     FLUX BOUNDARY    1:   -0.7789627E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1620E+06 S :   -0.1398796E-12
+
+================================================================================
+ ITERATION      552    TIME:    1 D 22 H  0 MN   0.0000 S   (   165600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       75 ITERATIONS, RELATIVE PRECISION:   0.8550551E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9530310E+15 M3
+     FLUX BOUNDARY    1:   -0.5437544E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1656E+06 S :   -0.7240596E-13
+
+================================================================================
+ ITERATION      564    TIME:    1 D 23 H  0 MN   0.0000 S   (   169200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          959
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.9618112E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9529061E+15 M3
+     FLUX BOUNDARY    1:   -0.1574072E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1692E+06 S :    0.1952972E-12
+
+================================================================================
+ ITERATION      576    TIME:    2 D  0 H  0 MN   0.0000 S   (   172800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          963
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.9009888E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9529344E+15 M3
+     FLUX BOUNDARY    1:    0.2808170E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1728E+06 S :    0.6798594E-13
+
+================================================================================
+ ITERATION      588    TIME:    2 D  1 H  0 MN   0.0000 S   (   176400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8177800E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9531165E+15 M3
+     FLUX BOUNDARY    1:    0.6782087E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1764E+06 S :   -0.4077197E-13
+
+================================================================================
+ ITERATION      600    TIME:    2 D  2 H  0 MN   0.0000 S   (   180000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       78 ITERATIONS, RELATIVE PRECISION:   0.9338991E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534160E+15 M3
+     FLUX BOUNDARY    1:    0.9294140E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1800E+06 S :   -0.2650597E-13
+
+================================================================================
+ ITERATION      612    TIME:    2 D  3 H  0 MN   0.0000 S   (   183600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       74 ITERATIONS, RELATIVE PRECISION:   0.9542069E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537643E+15 M3
+     FLUX BOUNDARY    1:    0.9658833E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1836E+06 S :    0.1233136E-12
+
+================================================================================
+ ITERATION      624    TIME:    2 D  4 H  0 MN   0.0000 S   (   187200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.8773680E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540816E+15 M3
+     FLUX BOUNDARY    1:    0.7788001E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1872E+06 S :   -0.4214674E-13
+
+================================================================================
+ ITERATION      636    TIME:    2 D  5 H  0 MN   0.0000 S   (   190800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.7956555E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9542916E+15 M3
+     FLUX BOUNDARY    1:    0.3939555E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1908E+06 S :    0.1335121E-12
+
+================================================================================
+ ITERATION      648    TIME:    2 D  6 H  0 MN   0.0000 S   (   194400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.9001951E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9543411E+15 M3
+     FLUX BOUNDARY    1:    -8659098.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1944E+06 S :    0.1007098E-12
+
+================================================================================
+ ITERATION      660    TIME:    2 D  7 H  0 MN   0.0000 S   (   198000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       86 ITERATIONS, RELATIVE PRECISION:   0.7622799E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9542169E+15 M3
+     FLUX BOUNDARY    1:   -0.5496759E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.1980E+06 S :    0.4996047E-13
+
+================================================================================
+ ITERATION      672    TIME:    2 D  8 H  0 MN   0.0000 S   (   201600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          955
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.9600515E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9539537E+15 M3
+     FLUX BOUNDARY    1:   -0.8545944E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2016E+06 S :    0.3095985E-13
+
+================================================================================
+ ITERATION      684    TIME:    2 D  9 H  0 MN   0.0000 S   (   205200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          955
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       76 ITERATIONS, RELATIVE PRECISION:   0.8833896E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9536213E+15 M3
+     FLUX BOUNDARY    1:   -0.9441302E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2052E+06 S :   -0.7675454E-13
+
+================================================================================
+ ITERATION      696    TIME:    2 D 10 H  0 MN   0.0000 S   (   208800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          955
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.7997239E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9533012E+15 M3
+     FLUX BOUNDARY    1:   -0.8065991E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2088E+06 S :    0.5153924E-13
+
+================================================================================
+ ITERATION      708    TIME:    2 D 11 H  0 MN   0.0000 S   (   212400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          955
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.6812991E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9530695E+15 M3
+     FLUX BOUNDARY    1:   -0.4779666E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2124E+06 S :    0.8042553E-13
+
+================================================================================
+ ITERATION      720    TIME:    2 D 12 H  0 MN   0.0000 S   (   216000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          962
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.9272041E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9529801E+15 M3
+     FLUX BOUNDARY    1:    -4713423.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2160E+06 S :    0.1781147E-14
+
+================================================================================
+ ITERATION      732    TIME:    2 D 13 H  0 MN   0.0000 S   (   219600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.9416940E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9530498E+15 M3
+     FLUX BOUNDARY    1:    0.3846461E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2196E+06 S :    0.1189834E-12
+
+================================================================================
+ ITERATION      744    TIME:    2 D 14 H  0 MN   0.0000 S   (   223200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       74 ITERATIONS, RELATIVE PRECISION:   0.9564368E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9532545E+15 M3
+     FLUX BOUNDARY    1:    0.6968323E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2232E+06 S :   -0.1140760E-12
+
+================================================================================
+ ITERATION      756    TIME:    2 D 15 H  0 MN   0.0000 S   (   226800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       76 ITERATIONS, RELATIVE PRECISION:   0.9720188E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9535346E+15 M3
+     FLUX BOUNDARY    1:    0.8173336E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2268E+06 S :    0.1140045E-12
+
+================================================================================
+ ITERATION      768    TIME:    2 D 16 H  0 MN   0.0000 S   (   230400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       75 ITERATIONS, RELATIVE PRECISION:   0.9933421E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9538160E+15 M3
+     FLUX BOUNDARY    1:    0.7192377E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2304E+06 S :   -0.2348983E-13
+
+================================================================================
+ ITERATION      780    TIME:    2 D 17 H  0 MN   0.0000 S   (   234000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          965
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       85 ITERATIONS, RELATIVE PRECISION:   0.8687238E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540205E+15 M3
+     FLUX BOUNDARY    1:    0.4127647E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2340E+06 S :    0.8726896E-13
+
+================================================================================
+ ITERATION      792    TIME:    2 D 18 H  0 MN   0.0000 S   (   237600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          964
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       85 ITERATIONS, RELATIVE PRECISION:   0.9970144E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9540874E+15 M3
+     FLUX BOUNDARY    1:    -1793227.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2376E+06 S :    0.1681873E-12
+
+================================================================================
+ ITERATION      804    TIME:    2 D 19 H  0 MN   0.0000 S   (   241200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       85 ITERATIONS, RELATIVE PRECISION:   0.9668367E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9539905E+15 M3
+     FLUX BOUNDARY    1:   -0.4720172E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2412E+06 S :    0.7537474E-13
+
+================================================================================
+ ITERATION      816    TIME:    2 D 20 H  0 MN   0.0000 S   (   244800.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       82 ITERATIONS, RELATIVE PRECISION:   0.9607367E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9537519E+15 M3
+     FLUX BOUNDARY    1:   -0.7942398E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2448E+06 S :    0.5217562E-13
+
+================================================================================
+ ITERATION      828    TIME:    2 D 21 H  0 MN   0.0000 S   (   248400.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          952
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       77 ITERATIONS, RELATIVE PRECISION:   0.9902609E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9534366E+15 M3
+     FLUX BOUNDARY    1:   -0.9043635E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2484E+06 S :    0.2484502E-13
+
+================================================================================
+ ITERATION      840    TIME:    2 D 22 H  0 MN   0.0000 S   (   252000.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       79 ITERATIONS, RELATIVE PRECISION:   0.7647897E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9531309E+15 M3
+     FLUX BOUNDARY    1:   -0.7694911E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2520E+06 S :    0.3735812E-13
+
+================================================================================
+ ITERATION      852    TIME:    2 D 23 H  0 MN   0.0000 S   (   255600.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          956
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       76 ITERATIONS, RELATIVE PRECISION:   0.9890890E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9529136E+15 M3
+     FLUX BOUNDARY    1:   -0.4377916E+08 M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2556E+06 S :    0.3420030E-13
+
+================================================================================
+ ITERATION      864    TIME:    3 D  0 H  0 MN   0.0000 S   (   259200.0000 S)
+ ILL-POSED PROBLEM, ENTERING FREE VELOCITY
+ FOR EXAMPLE AT BOUNDARY POINT NUMBER          961
+--------------------------------------------------------------------------------
+                          ADVECTION STEP
+--------------------------------------------------------------------------------
+                    DIFFUSION-PROPAGATION STEP
+ GRACJG (BIEF) :       80 ITERATIONS, RELATIVE PRECISION:   0.7642782E-08
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :   0.9528451E+15 M3
+     FLUX BOUNDARY    1:     2513334.     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2592E+06 S :    0.5638125E-13
+--------------------------------------------------------------------------------
+                   FINAL BALANCE OF WATER VOLUME
+
+     RELATIVE ERROR CUMULATED ON VOLUME:    0.2012256E-10
+
+     INITIAL VOLUME              :    0.9532460E+15 M3
+     FINAL VOLUME                :    0.9528451E+15 M3
+     VOLUME THAT ENTERED THE DOMAIN:   -0.4008398E+12 M3  ( IF <0 EXIT )
+     TOTAL VOLUME LOST             :     19181.75     M3
+
+ END OF TIME LOOP
+
+ EXITING MPI
+
+STOP 0
+                     *************************************
+                     *    END OF MEMORY ORGANIZATION:    *
+                     *************************************
+
+ CORRECT END OF RUN
+
+ ELAPSE TIME :
+                              9  SECONDS
+... merging separated result files
+
+... handling result files
+
+        moving: r2d_run.slf
+        moving: ts_run.slf
+... deleting working dir
+
+
+
+My work is done
+
+
